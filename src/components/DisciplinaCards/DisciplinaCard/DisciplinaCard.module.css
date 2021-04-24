@@ -7,7 +7,17 @@
     text-align: center;
 }
 
+
+.LinhaDivisora{
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+}
+
 .DisciplinaCard:hover{
     background-color: lightgreen;
     color:mintcream;
 }
+
+
+
