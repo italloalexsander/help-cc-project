@@ -1,23 +1,69 @@
 .DisciplinaCard{
-    width:50%;
-    margin: 16px auto;
+    min-width: 250px;
+    width:15%;
+    margin: 16px 2px;
     border: 1px dolid #eee;
     box-shadow: 0 2px 3px #ccc;
     padding: 16px;
     text-align: center;
-}
-
-
-.LinhaDivisora{
-    margin: 0px;
-    border: 0px;
-    padding: 0px;
+    float: left;
+    font-weight: bold;
 }
 
 .DisciplinaCard:hover{
-    background-color: lightgreen;
+    background-color: red;
     color:mintcream;
 }
 
+.DisciplinaCard2{
+    min-width: 250px;
+    width:15%;
+    margin: 16px 2px;
+    border: 1px dolid #eee;
+    box-shadow: 0 2px 3px #ccc;
+    padding: 16px;
+    text-align: center;
+    float: left;
+    font-weight: bold;
+}
+
+.DisciplinaCard2:hover{
+    background-color: orange;
+    color:mintcream;
+}
+
+.DisciplinaCard3{
+    min-width: 250px;
+    width:15%;
+    margin: 16px 2px;
+    border: 1px dolid #eee;
+    box-shadow: 0 2px 3px #ccc;
+    padding: 16px;
+    text-align: center;
+    float: left;
+    font-weight: bold;
+}
+
+.DisciplinaCard3:hover{
+    background-color: lightseagreen;
+    color:mintcream;
+}
+
+.DisciplinaCard4{
+    min-width: 250px;
+    width:15%;
+    margin: 16px 2px;
+    border: 1px dolid #eee;
+    box-shadow: 0 2px 3px #ccc;
+    padding: 16px;
+    text-align: center;
+    float: left;
+    font-weight: bold;
+}
+
+.DisciplinaCard4:hover{
+    background-color: lightgreen;
+    color:mintcream;
+}
 
 
