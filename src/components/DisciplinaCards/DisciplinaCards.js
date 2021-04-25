@@ -1,3 +1,4 @@
+import classes from './DisciplinaCards.module.css';
 import axios from 'axios';
 import React, {Component} from 'react';
 import DisciplinaCard from './DisciplinaCard/DisciplinaCard'
@@ -61,6 +62,7 @@ class DisciplinaCards extends Component{
     render(){
         return (
             <div>
+                <p className = {classes.Breakpoint}>Primeiro Período</p>
                 {this.state.disciplinas.map(disc =>(
                 <DisciplinaCard
                     key={disc.id.concat("jf")} 
@@ -70,6 +72,7 @@ class DisciplinaCards extends Component{
                     pontos={disc.Pontos}
                 />) )
                 }
+                <p className = {classes.Breakpoint}>Segundo Período</p>
                 {this.state.disciplinas2.map(disc2 =>(
                 <DisciplinaCard
                     key={disc2.id.concat("jf")} 

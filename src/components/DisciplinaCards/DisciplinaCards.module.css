@@ -1,0 +1,11 @@
+.Breakpoint{
+    width:100%;
+    margin: 16px 2px;
+    border: 1px dolid #eee;
+    box-shadow: 0 2px 3px #ccc;
+    padding: 16px;
+    text-align: center;
+    float: left;
+    font-weight: bold;
+    background-color: lightgrey; 
+}
