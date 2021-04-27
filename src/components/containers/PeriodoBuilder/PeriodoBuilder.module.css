@@ -1,11 +1,10 @@
-.Breakpoint{
-    width: 95%;
-    margin: 16px 2px;
-    border: 1px dolid #eee;
+.PeriodoBuilder{
+    width:80%;
+    margin: 5% 10%;
+    border: 1px solid #eee;
     box-shadow: 0 2px 3px #ccc;
     padding: 16px;
     text-align: center;
     float: left;
     font-weight: bold;
-    background-color: lightgrey; 
 }

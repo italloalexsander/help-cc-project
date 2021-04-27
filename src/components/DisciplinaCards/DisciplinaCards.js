@@ -2,11 +2,27 @@ import classes from './DisciplinaCards.module.css';
 import axios from 'axios';
 import React, {Component} from 'react';
 import DisciplinaCard from './DisciplinaCard/DisciplinaCard'
+import Tray from  '../Tray/Tray'
 
 class DisciplinaCards extends Component{
     state = {
         disciplinas: [],
-        disciplinas2: []
+        disciplinas2: [],
+        selecao: []
+    }
+
+    addDisciplinaHandler(index){
+        console.log(this.state.disciplinas[index])
+        this.setState({
+            selecao: [...this.state.selecao, this.state.disciplinas[index]]
+        })
+    }
+
+    addDisciplinaHandler2(index){
+        console.log(this.state.disciplinas2[index])
+        this.setState({
+            selecao: [...this.state.selecao, this.state.disciplinas2[index]]
+        })
     }
 
     componentDidMount(){
@@ -63,8 +79,9 @@ class DisciplinaCards extends Component{
         return (
             <div>
                 <p className = {classes.Breakpoint}>Primeiro Período</p>
-                {this.state.disciplinas.map(disc =>(
+                {this.state.disciplinas.map((disc, index) =>(
                 <DisciplinaCard
+                    click = {() => this.addDisciplinaHandler(index)}
                     key={disc.id.concat("jf")} 
                     name={disc.id}
                     dificuldade={disc.Dificuldade}
@@ -73,15 +90,21 @@ class DisciplinaCards extends Component{
                 />) )
                 }
                 <p className = {classes.Breakpoint}>Segundo Período</p>
-                {this.state.disciplinas2.map(disc2 =>(
+                {this.state.disciplinas2.map((disc2, index) =>(
                 <DisciplinaCard
+                    click = {() => this.addDisciplinaHandler2(index)}
                     key={disc2.id.concat("jf")} 
                     name={disc2.id}
                     dificuldade={disc2.Dificuldade}
                     NC={disc2.NC}
                     pontos={disc2.Pontos}
-                />) )
+                />))
                 }
+                {this.state.selecao.map((trayAux, index) =>(
+                <Tray
+                name = {trayAux.id}
+                key = {index}/>
+                ))}       
             </div>
 
         )

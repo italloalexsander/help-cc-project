@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import Aux from '../../../hoc/Auxiliary';
 import DisciplinaCard from '../../DisciplinaCards/DisciplinaCard/DisciplinaCard'
 import DisciplinaCards from '../../DisciplinaCards/DisciplinaCards'
+import classes from './PeriodoBuilder.module.css'
 
 class PeriodoBuilder extends Component{
     state = {
@@ -30,10 +31,10 @@ class PeriodoBuilder extends Component{
 
     render(){
         return(
-            <Aux>
+            <div className = {classes.PeriodoBuilder}>
                 <div>Periodo</div>
                 <DisciplinaCards/>
-            </Aux>
+            </div>
         );
     }
 }

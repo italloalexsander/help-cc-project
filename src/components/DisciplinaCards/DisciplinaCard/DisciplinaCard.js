@@ -4,10 +4,12 @@ import React from 'react'
 
 const DisciplinaCard = (props) =>{
 
-    if(props.pontos > 11){
+    let styles = ""
+
+    /*if(props.pontos > 11){
         return(
         <div className = {classes.DisciplinaCard}>
-            <p>{props.name} <button>+</button></p>
+            <p>{props.name} <button onClick={props.click}>+</button></p>
             <p className = {classes.LinhaDivisora}>--------</p>
             <p>Dificuldade: {props.dificuldade}</p>
             <p>Taxa NC: {props.NC} </p>
@@ -42,7 +44,33 @@ const DisciplinaCard = (props) =>{
             <p>Taxa NC: {props.NC} </p>
         </div>
         )
+    }*/
+
+    let assignedClasses = [];
+
+    if (props.pontos > 11){
+        assignedClasses = classes.DisciplinaCard
     }
+
+    else if (props.pontos > 8){
+        assignedClasses = classes.DisciplinaCard2
+    }
+
+    else if (props.pontos > 5){
+        assignedClasses = classes.DisciplinaCard3
+    }
+
+    else if (props.pontos < 5){
+        assignedClasses = classes.DisciplinaCard4
+    }
+
+    return(
+        <div className = {assignedClasses}>
+            <p>{props.name} <button onClick={props.click}>+</button></p>
+            <p className = {classes.LinhaDivisora}>--------</p>
+            <p>Dificuldade: {props.dificuldade}</p>
+            <p>Taxa NC: {props.NC} </p>
+        </div>)
         
 }
 //{id: "11500", name: "Calculo 1", dificuldade: 3, taxaReprovacao: "18%"}
