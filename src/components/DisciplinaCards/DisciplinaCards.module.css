@@ -1,10 +1,10 @@
 .Breakpoint{
-    width: 95%;
-    margin: 16px 2px;
+    width: 100%;
     border: 1px dolid #eee;
     box-shadow: 0 2px 3px #ccc;
-    padding: 16px;
     text-align: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
     float: left;
     font-weight: bold;
     background-color: lightgrey; 

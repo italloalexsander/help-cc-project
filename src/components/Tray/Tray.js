@@ -6,7 +6,7 @@ const tray = (props) =>{
 
     return(
         <div>
-            <p className = {classes.Tray}>{props.name}</p>
+            <p className = {classes.Tray}>{props.name}<button onClick = {props.click}>-</button></p>
         </div>
     )
 }
