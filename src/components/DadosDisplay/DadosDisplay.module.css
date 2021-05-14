@@ -1,0 +1,19 @@
+.Box{
+    background-color: black;
+    color: white;
+    text-align: left;
+    padding: 16px;
+}
+
+.ButtonParagraph{
+    text-align: right;
+}
+.Button{
+    background-color: green;
+    color: white;
+    font-weight: bold;
+}
+
+.Title{
+    color: black;
+}

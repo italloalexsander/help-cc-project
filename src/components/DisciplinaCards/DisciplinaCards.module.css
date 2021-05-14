@@ -9,3 +9,17 @@
     font-weight: bold;
     background-color: lightgrey; 
 }
+
+.DisciplinaCards{
+    width: 100%;
+    margin: 0;
+    overflow:hidden;
+}
+
+.SideBar{
+    top: 100px;
+    left: 85%;
+    flex-direction: column;
+    position: fixed;
+    color: red;
+}

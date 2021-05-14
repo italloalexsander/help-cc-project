@@ -32,8 +32,8 @@ class PeriodoBuilder extends Component{
     render(){
         return(
             <div className = {classes.PeriodoBuilder}>
-                <div>Periodo</div>
-                <DisciplinaCards/>
+                    <p>Lista de Disciplinas</p>
+                    <DisciplinaCards/>
             </div>
         );
     }

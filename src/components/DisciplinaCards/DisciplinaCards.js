@@ -3,6 +3,9 @@ import axios from 'axios';
 import React, {Component} from 'react';
 import DisciplinaCard from './DisciplinaCard/DisciplinaCard'
 import Tray from  '../Tray/Tray'
+import Aux from '../../hoc/Auxiliary'
+import Modal from '../UI/Modal/Modal'
+import PeriodoSummary from './PeriodoSummary'
 
 class DisciplinaCards extends Component{
 
@@ -12,10 +15,30 @@ class DisciplinaCards extends Component{
         disciplinas: [],
         disciplinas2: [],
         selecao: [],
-        cont: 0
+        cont: 0,
+        contDifMed: 0,
+        contAval: 0,
+        contProjFinal: 0,
+        contNCMed: 0,
+        Classific: '',
+        periodoMontado: false
+
     }
 
     //fazer um genérico da função que irá adicionar no array certo
+    
+    clickOkHandler = () => {
+        this.periodoMontadoHandler();
+        this.geraPeriodoHandler();
+    }
+    periodoMontadoHandler = () => {
+        this.setState({periodoMontado: true})
+    }
+
+    periodoMontadoCancelHandler = () => {
+        this.setState({periodoMontado: false})
+    }
+
     addDisciplinaHandler(index, periodo){
         if(periodo === 1){
             if(!this.state.selecao.find(element=>element.id===this.state.disciplinas[index].id)){
@@ -51,7 +74,7 @@ class DisciplinaCards extends Component{
 
     geraPeriodoHandler(){
         
-        let cont = 0, contPontos = 0, contAvaliacoes = 0, contProjetoFinal = 0, contDificuldade = 0;
+        let cont = 0, contPontos = 0, contAvaliacoes = 0, contProjetoFinal = 0, contDificuldade = 0, contNC = 0, Classifica = '';
         
         cont = this.state.selecao.length
         //console.log(cont)
@@ -59,24 +82,31 @@ class DisciplinaCards extends Component{
             contDificuldade = (contDificuldade + this.state.selecao[i].Dificuldade)
             contPontos = contPontos + this.state.selecao[i].Pontos
             contAvaliacoes = contAvaliacoes + this.state.selecao[i].Avaliacoes
+            contNC = contNC + this.state.selecao[i].Pontos
             //contProjetoFinal = contProjetoFinal + selecaoAux[i].Projeto_Final
         }
 
         contDificuldade = (contDificuldade / cont)
+        contNC = (contNC / cont)
+
         //console.log(contDificuldade)
         if (contPontos > 66){
             console.log("Seu periodo vai ser bem pesado com " + contAvaliacoes + "avaliacoes, e com dificuldade média de" + contDificuldade)
+            Classifica = 'Muito Pesado'
         }
         else if (contPontos > 48){
             console.log("Seu periodo vai ser pesado com " + contAvaliacoes + "avaliacoes, e com dificuldade média de" + contDificuldade)
+            Classifica = 'Pesado'
         }
         else if (contPontos > 30){
             console.log("Seu periodo vai ser normal com " + contAvaliacoes + "avaliacoes, e com dificuldade média de" + contDificuldade)
+            Classifica = 'Normal'
         }
         else{
-            console.log("Seu periodo vai ser normal com " + contAvaliacoes + "avaliacoes, e com dificuldade média de" + contDificuldade)
+            console.log("Seu periodo vai ser leve com " + contAvaliacoes + "avaliacoes, e com dificuldade média de" + contDificuldade)
+            Classifica = 'Leve'
         }
-        
+        this.setState({contDifMed: contDificuldade, contAval: contAvaliacoes, contNCMed: contNC, Classific: Classifica})
     }
 
     componentDidMount(){
@@ -131,38 +161,50 @@ class DisciplinaCards extends Component{
     }
     render(){
         return (
-            <div>
-                <p className = {classes.Breakpoint}>Primeiro Período</p>
-                {this.state.disciplinas.map((disc, index) =>(
-                <DisciplinaCard
-                    click = {() => this.addDisciplinaHandler(index, 1)}
-                    key={disc.id.concat("jf")} 
-                    name={disc.id}
-                    dificuldade={disc.Dificuldade}
-                    NC={disc.NC}
-                    pontos={disc.Pontos}
-                />) )
-                }
-                <p className = {classes.Breakpoint}>Segundo Período</p>
-                {this.state.disciplinas2.map((disc2, index) =>(
-                <DisciplinaCard
-                    click = {() => this.addDisciplinaHandler(index, 2)}
-                    key={disc2.id.concat("jf")} 
-                    name={disc2.id}
-                    dificuldade={disc2.Dificuldade}
-                    NC={disc2.NC}
-                    pontos={disc2.Pontos}
-                />))
-                }
-                {this.state.selecao.map((trayAux, index) =>(
-                <Tray
-                name = {trayAux.id}
-                key = {index}
-                click ={() => this.removeDisciplinaHandler(index)}/>
-                ))
-                }
-                 <button onClick = {() => this.geraPeriodoHandler()}>HAHAHA</button>       
-            </div>
+            <Aux>
+                <div className = {classes.DisciplinaCards}>
+                    <Modal show={this.state.periodoMontado} modalClosed={this.periodoMontadoCancelHandler}>
+                        <PeriodoSummary
+                        DificuldadeMed = {this.state.contDifMed}
+                        Classificacao = {this.state.Classific}
+                        Avaliacoes = {this.state.contAval}
+                        NC = {this.state.contNCMed}/>
+                    </Modal>
+                    <p className = {classes.Breakpoint}>Primeiro Período</p>
+                    {this.state.disciplinas.map((disc, index) =>(
+                    <DisciplinaCard
+                        click = {() => this.addDisciplinaHandler(index, 1)}
+                        key={disc.id.concat("jf")} 
+                        name={disc.id}
+                        dificuldade={disc.Dificuldade}
+                        NC={disc.NC}
+                        pontos={disc.Pontos}
+                    />) )
+                    }
+                    <p className = {classes.Breakpoint}>Segundo Período</p>
+                    {this.state.disciplinas2.map((disc2, index) =>(
+                    <DisciplinaCard
+                        click = {() => this.addDisciplinaHandler(index, 2)}
+                        key={disc2.id.concat("jf")} 
+                        name={disc2.id}
+                        dificuldade={disc2.Dificuldade}
+                        NC={disc2.NC}
+                        pontos={disc2.Pontos}
+                    />))
+                    }
+                    
+                </div>
+                <div className = {classes.SideBar}>
+                        {this.state.selecao.map((trayAux, index) =>(
+                        <Tray
+                        name = {trayAux.id}
+                        key = {index}
+                        click ={() => this.removeDisciplinaHandler(index)}/>
+                        ))
+                        }
+                        <button onClick = {() => this.clickOkHandler()}>OK</button>       
+                </div>
+            </Aux>
 
         )
         /*return this.props.disciplinas.map(disciplina =>()
