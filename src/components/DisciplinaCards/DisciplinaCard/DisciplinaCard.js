@@ -65,7 +65,7 @@ const DisciplinaCard = (props) =>{
     }
 
     return(
-        <div className = {assignedClasses}>
+        <div className = {assignedClasses} onClick = {props.redirect}>
             <p>{props.name} <button onClick={props.click}>+</button></p>
             <p className = {classes.LinhaDivisora}>--------</p>
             <p>Dificuldade: {props.dificuldade}</p>

@@ -11,7 +11,7 @@ class DisciplinaPage extends Component{
     }
 
     componentDidMount(){
-        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas/' + this.state.id + '.json').
+        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas/' + this.props.match.params.id + '.json').
             then(response =>{
                 this.setState({disciplinaAtual: response.data})
             })

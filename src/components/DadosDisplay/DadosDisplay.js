@@ -58,7 +58,7 @@ const DadosDisplay = (props) =>{
                 <p>Número de Avaliações: {props.Avaliacoes}</p>
                 <p>Projeto Final: {auxProj}</p>
                 <p>Taxa NC: {props.TaxaNC}</p>
-                <p>Comentários:</p>
+                
             </div>
             {//<Comentarios/>
             }
