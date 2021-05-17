@@ -4,14 +4,15 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: orange;
+    background-color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
     box-sizing: border-box;
     z-index: 90;
-    color: white;
+    color: lightblue;
+    border: 1px solid black
 }
 
 .Toolbar nav{

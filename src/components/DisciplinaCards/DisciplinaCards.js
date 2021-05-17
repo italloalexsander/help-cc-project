@@ -5,7 +5,7 @@ import DisciplinaCard from './DisciplinaCard/DisciplinaCard'
 import Tray from  '../Tray/Tray'
 import Aux from '../../hoc/Auxiliary'
 import Modal from '../UI/Modal/Modal'
-import PeriodoSummary from './PeriodoSummary'
+import PeriodoSummary from '../PeriodoSummary/PeriodoSummary'
 import {NavLink, Route} from 'react-router-dom'
 import DisciplinaPage from '../containers/DisciplinaPage/DisciplinaPage'
 
@@ -23,7 +23,7 @@ class DisciplinaCards extends Component{
         contProjFinal: 0,
         contNCMed: 0,
         Classific: '',
-        SelecaoNomes: '',
+        SelecaoNomes: [],
         periodoMontado: false,
         redirect: false,
         discShow: true,
@@ -92,7 +92,7 @@ class DisciplinaCards extends Component{
 
     geraPeriodoHandler(){
         
-        let cont = 0, contPontos = 0, contAvaliacoes = 0, contProjetoFinal = 0, contDificuldade = 0, contNC = 0, Classifica = '', SelecaoNom = '';
+        let cont = 0, contPontos = 0, contAvaliacoes = 0, contProjetoFinal = 0, contDificuldade = 0, contNC = 0, Classifica = '', SelecaoNom = [];
         
         cont = this.state.selecao.length
         //console.log(cont)
@@ -102,11 +102,13 @@ class DisciplinaCards extends Component{
             contAvaliacoes = contAvaliacoes + this.state.selecao[i].Avaliacoes
             contNC = contNC + this.state.selecao[i].Pontos
             contProjetoFinal = contProjetoFinal + this.state.selecao[i].ProjetoFinal
-            SelecaoNom.concat(SelecaoNom, this.state.selecao[i].Nome + '\n')
+            SelecaoNom.push(this.state.selecao[i].Nome)
         }
 
         contDificuldade = (contDificuldade / cont)
+        contDificuldade = +contDificuldade.toFixed(2)
         contNC = (contNC / cont)
+        contNC = +contNC.toFixed(2)
 
         //console.log(contDificuldade)
         if (contPontos > 66){

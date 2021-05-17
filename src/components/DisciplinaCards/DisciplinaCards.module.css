@@ -7,7 +7,8 @@
     padding-bottom: 16px;
     float: left;
     font-weight: bold;
-    background-color: lightgrey; 
+    background-color: white;
+    color: black; 
 }
 
 .DisciplinaCards{
@@ -21,7 +22,8 @@
     left: 85%;
     flex-direction: column;
     position: fixed;
-    color: red;
+    color: black;
+    background-color: white;
 }
 
 .Button{

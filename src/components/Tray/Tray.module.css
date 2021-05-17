@@ -5,9 +5,9 @@
     padding: 16px;
     text-align: center;
     font-weight: bold;
-    color: brown;
+    color: white;
     max-width: 100px;
     max-height: 50px;
-    background-color: white;
+    background-color: lightblue;
     min-width: 30%;
 }

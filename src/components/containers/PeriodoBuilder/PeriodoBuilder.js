@@ -32,7 +32,7 @@ class PeriodoBuilder extends Component{
     render(){
         return(
             <div className = {classes.PeriodoBuilder}>
-                    <p>Lista de Disciplinas</p>
+                    <p className = {classes.Info}>Obs: Taxa NC refere-se a soma de reprovação, trancamento e desistência de cada cadeira</p>
                     <DisciplinaCards/>
             </div>
         );
