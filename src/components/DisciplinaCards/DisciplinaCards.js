@@ -23,6 +23,7 @@ class DisciplinaCards extends Component{
         contProjFinal: 0,
         contNCMed: 0,
         Classific: '',
+        SelecaoNomes: '',
         periodoMontado: false,
         redirect: false,
         discShow: true,
@@ -91,7 +92,7 @@ class DisciplinaCards extends Component{
 
     geraPeriodoHandler(){
         
-        let cont = 0, contPontos = 0, contAvaliacoes = 0, contProjetoFinal = 0, contDificuldade = 0, contNC = 0, Classifica = '';
+        let cont = 0, contPontos = 0, contAvaliacoes = 0, contProjetoFinal = 0, contDificuldade = 0, contNC = 0, Classifica = '', SelecaoNom = '';
         
         cont = this.state.selecao.length
         //console.log(cont)
@@ -100,7 +101,8 @@ class DisciplinaCards extends Component{
             contPontos = contPontos + this.state.selecao[i].Pontos
             contAvaliacoes = contAvaliacoes + this.state.selecao[i].Avaliacoes
             contNC = contNC + this.state.selecao[i].Pontos
-            //contProjetoFinal = contProjetoFinal + selecaoAux[i].Projeto_Final
+            contProjetoFinal = contProjetoFinal + this.state.selecao[i].ProjetoFinal
+            SelecaoNom.concat(SelecaoNom, this.state.selecao[i].Nome + '\n')
         }
 
         contDificuldade = (contDificuldade / cont)
@@ -123,7 +125,8 @@ class DisciplinaCards extends Component{
             console.log("Seu periodo vai ser leve com " + contAvaliacoes + "avaliacoes, e com dificuldade média de" + contDificuldade)
             Classifica = 'Leve'
         }
-        this.setState({contDifMed: contDificuldade, contAval: contAvaliacoes, contNCMed: contNC, Classific: Classifica})
+        this.setState({contDifMed: contDificuldade, contAval: contAvaliacoes, contNCMed: contNC, Classific: Classifica, 
+            contProjFinal: contProjetoFinal, SelecaoNomes: SelecaoNom})
     }
 
     componentDidMount(){
@@ -187,7 +190,9 @@ class DisciplinaCards extends Component{
                         DificuldadeMed = {this.state.contDifMed}
                         Classificacao = {this.state.Classific}
                         Avaliacoes = {this.state.contAval}
-                        NC = {this.state.contNCMed}/>
+                        NC = {this.state.contNCMed}
+                        ProjetoFinal = {this.state.contProjFinal}
+                        Selecao = {this.state.SelecaoNomes}/>
                     </Modal>
                     <p className = {classes.Breakpoint}>Primeiro Período 
                     <button onClick={() => this.buttonShowHandler(1)} className={classes.Button}>
@@ -215,7 +220,8 @@ class DisciplinaCards extends Component{
                         <DisciplinaCard
                             click = {() => this.addDisciplinaHandler(index, 2)}
                             key={disc2.id.concat("jf")} 
-                            name={disc2.id}
+                            name={disc2.Nome}
+                            id = {disc2.id}
                             dificuldade={disc2.Dificuldade}
                             NC={disc2.NC}
                             pontos={disc2.Pontos}

@@ -10,7 +10,13 @@ class DisciplinaPage extends Component{
     }
 
     componentDidMount(){
+        if(this.props.match.params.id < 1006 && this.props.match.params.id >= 1001)
         axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas/' + this.props.match.params.id + '.json').
+            then(response =>{
+                this.setState({disciplinaAtual: response.data})
+            })
+        else if(this.props.match.params.id < 1012 && this.props.match.params.id >= 1006)
+        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas2/' + this.props.match.params.id + '.json').
             then(response =>{
                 this.setState({disciplinaAtual: response.data})
             })
