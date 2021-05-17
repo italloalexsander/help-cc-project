@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import DadosDisplay from '../../DadosDisplay/DadosDisplay'
 import classes from './DisciplinaPage.module.css'
+import Comentarios from './Comentarios'
 
 class DisciplinaPage extends Component{
     state = {
@@ -34,6 +35,7 @@ class DisciplinaPage extends Component{
             ProjetoFinal = {this.state.disciplinaAtual.ProjetoFinal}
             Satisfacao = {this.state.disciplinaAtual.Satisf}
             />
+            <Comentarios/>
         </div>
 
         )

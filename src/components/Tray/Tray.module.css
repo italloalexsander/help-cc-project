@@ -2,12 +2,19 @@
     margin: 16px 2px;
     border: 1px solid #eee;
     box-shadow: 0 2px 3px #ccc;
-    padding: 16px;
+    padding: 8px;
     text-align: center;
     font-weight: bold;
     color: white;
-    max-width: 100px;
-    max-height: 50px;
+    width: 200px;
+    max-height: 30px;
     background-color: lightblue;
     min-width: 30%;
+    border-radius: 10px;
+}
+
+.Button{
+    float: right;
+    background-color: lightblue;
+    color: white;
 }

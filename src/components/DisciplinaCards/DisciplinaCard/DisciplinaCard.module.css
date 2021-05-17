@@ -9,6 +9,7 @@
     float: left;
     font-weight: normal;
     background-color: white;
+    border-radius: 10px;
 }
 
 .DisciplinaCard:hover{
@@ -27,6 +28,7 @@
     float: left;
     font-weight: normal;
     background-color: white;
+    border-radius: 10px;
 }
 
 .DisciplinaCard2:hover{
@@ -45,6 +47,7 @@
     float: left;
     font-weight: normal;
     background-color: white;
+    border-radius: 10px;
 }
 
 .DisciplinaCard3:hover{
@@ -63,6 +66,7 @@
     float: left;
     font-weight: normal;
     background-color: white;
+    border-radius: 10px;
 }
 
 .DisciplinaCard4:hover{
