@@ -1,5 +1,6 @@
 import classes from './DisciplinaCard.module.css'
 import React from 'react'
+import {NavLink} from 'react-router-dom'
 
 
 const DisciplinaCard = (props) =>{
@@ -47,6 +48,21 @@ const DisciplinaCard = (props) =>{
     }*/
 
     let assignedClasses = [];
+    let auxDif = props.dificuldade;
+
+    if(auxDif >= 3.5){
+        auxDif = '\u2b50\u2b50\u2b50\u2b50'
+
+    }
+    else if(auxDif >= 2.5){
+        auxDif = '\u2b50\u2b50\u2b50'
+    }
+    else if(auxDif >= 1.5){
+        auxDif = '\u2b50\u2b50'
+    }
+    else if(auxDif == 1){
+        auxDif = '\u2b50'
+    }
 
     if (props.pontos > 11){
         assignedClasses = classes.DisciplinaCard
@@ -65,12 +81,17 @@ const DisciplinaCard = (props) =>{
     }
 
     return(
-        <div className = {assignedClasses} onClick = {props.redirect}>
-            <p>{props.name} <button onClick={props.click}>+</button></p>
-            <p className = {classes.LinhaDivisora}>--------</p>
-            <p>Dificuldade: {props.dificuldade}</p>
-            <p>Taxa NC: {props.NC} </p>
-        </div>)
+            <div className = {assignedClasses}>
+                <button className ={classes.Button} onClick={props.click}>+</button>
+                <div>
+                <span><NavLink to = {'/disciplina/' + props.id} className = {classes.Link}>{props.name}
+                    </NavLink></span>
+                    <p className = {classes.LinhaDivisora}>--------</p>
+                    <p>Dificuldade: {auxDif}</p>
+                    <p>Taxa NC: {props.NC} </p>
+                </div>
+                
+            </div>)
         
 }
 //{id: "11500", name: "Calculo 1", dificuldade: 3, taxaReprovacao: "18%"}

@@ -24,13 +24,24 @@ class DisciplinaCards extends Component{
         contNCMed: 0,
         Classific: '',
         periodoMontado: false,
-        redirect: false
+        redirect: false,
+        discShow: true,
+        disc2Show: true
 
     }
 
     //fazer um genérico da função que irá adicionar no array certo
     
-    redirectHandler = () => {
+    buttonShowHandler = (aux) =>{
+        let aux2 = null;
+        if(aux == 1){
+            aux2 = this.state.discShow
+            this.setState({discShow: !aux2})
+        }
+        if(aux == 2){
+            aux2 = this.state.disc2Show
+            this.setState({disc2Show: !aux2})
+        }
     }
 
     clickOkHandler = () => {
@@ -178,26 +189,30 @@ class DisciplinaCards extends Component{
                         Avaliacoes = {this.state.contAval}
                         NC = {this.state.contNCMed}/>
                     </Modal>
-                    <p className = {classes.Breakpoint}>Primeiro Período</p>
-                    {this.state.disciplinas.map((disc, index) =>(
-                    <NavLink to={'/disciplina/' + disc.id}>
+                    <p className = {classes.Breakpoint}>Primeiro Período 
+                    <button onClick={() => this.buttonShowHandler(1)} className={classes.Button}>
+                        {this.state.discShow?('-'):'+'}</button>
+                    </p>
+                    {this.state.discShow?(
+                        this.state.disciplinas.map((disc, index) =>(
                         <DisciplinaCard
-                            redirect = {() => this.redirectHandler()}
                             click = {() => this.addDisciplinaHandler(index, 1)}
                             key={disc.id.concat("jf")} 
                             name={disc.Nome}
+                            id = {disc.id}
                             dificuldade={disc.Dificuldade}
                             NC={disc.NC}
                             pontos={disc.Pontos}
                         />
-                    </NavLink>
-                    ) )
-                    }
-                    <p className = {classes.Breakpoint}>Segundo Período</p>
-                    {this.state.disciplinas2.map((disc2, index) =>(
-                    <NavLink to={'/disciplina/' + disc2.id}>   
+                        
+                        ))
+                    ):null}
+                    <p className = {classes.Breakpoint}>Segundo Período
+                    <button onClick = {() => this.buttonShowHandler(2)} className={classes.Button}>
+                        {this.state.disc2Show?('-'):'+'}</button></p>
+                    {this.state.disc2Show?(
+                        this.state.disciplinas2.map((disc2, index) =>(
                         <DisciplinaCard
-                            redirect = {() => this.redirectHandler()}
                             click = {() => this.addDisciplinaHandler(index, 2)}
                             key={disc2.id.concat("jf")} 
                             name={disc2.id}
@@ -205,15 +220,15 @@ class DisciplinaCards extends Component{
                             NC={disc2.NC}
                             pontos={disc2.Pontos}
                         />
-                    </NavLink>
-                    ))
-                    }
+                        
+                        ))
+                    ):null}
                     
                 </div>
                 <div className = {classes.SideBar}>
                         {this.state.selecao.map((trayAux, index) =>(
                         <Tray
-                        name = {trayAux.id}
+                        name = {trayAux.Nome}
                         key = {index}
                         click ={() => this.removeDisciplinaHandler(index)}/>
                         ))

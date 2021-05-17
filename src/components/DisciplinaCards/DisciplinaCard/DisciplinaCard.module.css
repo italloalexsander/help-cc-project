@@ -70,3 +70,24 @@
     color:mintcream;
 }
 
+.Button{
+    float: right;;
+    background-color: white;
+    box-shadow: white;
+    border: 1px solid black;
+    font-weight: bold;
+    
+}
+
+.Button:hover{
+    background-color: greenyellow;
+    color: white;
+    border: 1px solid white;
+    
+}
+
+.Link, Link:visited, Link:hover, Link:active{
+    text-decoration: underline;
+    color:inherit;
+    text-align: center;
+}

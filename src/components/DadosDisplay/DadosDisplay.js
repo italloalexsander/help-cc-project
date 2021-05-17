@@ -16,19 +16,19 @@ const DadosDisplay = (props) =>{
     }
 
     if(props.Pontos >= 11){
-        auxPontos = 'Muito Díficil'
+        auxPontos = 'Muito Pesada'
     }
 
     else if(props.Pontos >= 8){
-        auxPontos = 'Díficil'
+        auxPontos = 'Pesada'
     }
 
     else if(props.Pontos >= 5){
-        auxPontos = 'Médio'
+        auxPontos = 'Normal'
     }
 
     else{
-        auxPontos = 'Fácil'
+        auxPontos = 'Leve'
     }
 
 
@@ -58,6 +58,7 @@ const DadosDisplay = (props) =>{
                 <p>Número de Avaliações: {props.Avaliacoes}</p>
                 <p>Projeto Final: {auxProj}</p>
                 <p>Taxa NC: {props.TaxaNC}</p>
+                <p>Nível de Satisfação: {props.Satisfacao}</p>
                 
             </div>
             {//<Comentarios/>

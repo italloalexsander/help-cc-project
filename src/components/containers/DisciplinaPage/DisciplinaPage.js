@@ -5,8 +5,7 @@ import classes from './DisciplinaPage.module.css'
 
 class DisciplinaPage extends Component{
     state = {
-        disciplinaAtual: [],
-        id: '1001'
+        disciplinaAtual: []
 
     }
 
@@ -21,12 +20,13 @@ class DisciplinaPage extends Component{
         return(
         <div className = {classes.DisciplinaPage}>
             <DadosDisplay
-            Nome = {this.state.disciplinaAtual.Nome}
+            Nome = {this.state.disciplinaAtual.NomeCompleto}
             Dificuldade = {this.state.disciplinaAtual.Dificuldade}
             Avaliacoes = {this.state.disciplinaAtual.Avaliacoes}
             TaxaNC = {this.state.disciplinaAtual.NC}
             Pontos = {this.state.disciplinaAtual.Pontos}
             ProjetoFinal = {this.state.disciplinaAtual.ProjetoFinal}
+            Satisfacao = {this.state.disciplinaAtual.Satisf}
             />
         </div>
 
