@@ -5,7 +5,7 @@ import Logo from '../../Logo/Logo'
 const toolbar = (props) =>(
     <header className={classes.Toolbar}>
         <div>MENU</div>
-        <div><Logo/></div>
+        <div><Logo type = 'toolbar'/></div>
         <nav>
             ...
         </nav>

@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import Input from '../../UI/Input/Input'
 import Button from '../../UI/Button/Button'
 import classes from './Auth.module.css';
+import Spinner from '../../UI/Spinner/Spinner'
 import * as actions from '../../../store/actions/index'
 import {connect} from 'react-redux'
+import Logo from '../../Logo/Logo'
 
 class Auth extends Component{
     state = {
@@ -105,7 +107,7 @@ class Auth extends Component{
             });
         }
         
-        const form = formElementsArray.map(formElement => (
+        let form = formElementsArray.map(formElement => (
             <Input 
                 key={formElement.id}
                 elementType={formElement.config.elementType}
@@ -116,17 +118,50 @@ class Auth extends Component{
                 touched={formElement.config.touched}
                 changed={(event) => this.inputChangedHandler(event, formElement.id)} />
         ))
+
+        if(this.props.loading){
+            form = <Spinner></Spinner>
+        }
+        
+        let errorMessage = null;
+
+        if (this.props.error){
+            if(this.props.error.message == 'INVALID_EMAIL'){
+            errorMessage = (
+                <p>Email Inválido</p>
+            )
+            }
+            if (this.props.error.message == 'EMAIL_EXISTS'){
+                errorMessage = (
+                    <p>Email já Cadastrado</p>
+                )
+            }
+        }
+
+        
+
+
         return(
             <div className = {classes.Auth}>
-                <form onSubmit ={this.submitHandler}>
-                {form}
-                <Button btnType="Sucess">{this.state.isSignup? 'Registrar':'Fazer Login'}</Button>
+                <Logo type = 'medio'/>
+                <form onSubmit ={this.submitHandler}>  
+                    {form}
+                    {errorMessage}
+                    <Button btnType="Sucess">{this.state.isSignup? 'Registrar':'Fazer Login'}</Button>
                 </form>
                 <Button clicked={this.switchAuthModeHandler} 
                 btnType="Danger">Mudar para {this.state.isSignup? 'Login':'Registro'}</Button>
             </div>
         );
     }
+}
+
+const mapStateToProps = state => {
+    console.log(state);
+    return{
+        loading: state.loading,
+        error: state.error
+    };
 }
 
 const mapDispatchToProps = dispatch => {
@@ -137,4 +172,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(null, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);
