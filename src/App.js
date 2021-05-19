@@ -5,6 +5,7 @@ import PeriodoBuilder from './components/containers/PeriodoBuilder/PeriodoBuilde
 import DisciplinaPage from './components/containers/DisciplinaPage/DisciplinaPage'
 import classes from './App.module.css'
 import {BrowserRouter, Route} from 'react-router-dom'
+import Auth from './components/containers/Auth/Auth'
 
 
 class App extends Component{
@@ -13,6 +14,7 @@ class App extends Component{
     <BrowserRouter> 
     <div>
       <Layout>
+        <Route path ="/login" component={Auth}/>
         <Route path ="/disciplina/:id" component={DisciplinaPage}/>
         <Route path ="/" exact component={PeriodoBuilder}/>
       </Layout>
