@@ -50,7 +50,7 @@ const DadosDisplay = (props) =>{
     return(
         <div>
             <h2 className = {classes.Title}>{props.Nome}</h2>
-            <p className = {classes.ButtonParagraph}><button className = {classes.Button}>Meu Feedback</button></p>
+            <p className = {classes.ButtonParagraph}><button onClick = {props.clicked} className = {classes.Button}>Meu Feedback</button></p>
                 
             <div className = {classes.Box}>
                 <p>Classificação: {auxPontos}</p>
