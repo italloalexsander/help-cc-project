@@ -7,6 +7,7 @@ import Modal from '../../UI/Modal/Modal'
 import Input from '../../UI/Input/Input'
 import Button from '../../UI/Button/Button'
 import {connect} from 'react-redux'
+import {NavLink} from 'react-router-dom'
 
 class DisciplinaPage extends Component{
     state = {
@@ -311,7 +312,11 @@ class DisciplinaPage extends Component{
                 changed={(event) => this.inputChangedHandler(event, formElementsArray[7].id)} />
                 <Button>OK</Button>
                 </form>
-            </Modal>:<Modal show={this.state.meuFeedbackOpen} modalClosed={() => this.closeFeedbackHandler()}>Login</Modal>}
+            </Modal>:<Modal show={this.state.meuFeedbackOpen} modalClosed={() => this.closeFeedbackHandler()}>
+                <NavLink to = {'/login'} className = {classes.Link}>
+                <div><p>Fazer Login</p></div>
+                </NavLink>
+                </Modal>}
             <DadosDisplay
             clicked = {() => this.openFeedbackHandler()}
             Nome = {this.state.disciplinaAtual.NomeCompleto}
