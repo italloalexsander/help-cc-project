@@ -6,6 +6,7 @@ import Comentarios from './Comentarios'
 import Modal from '../../UI/Modal/Modal'
 import Input from '../../UI/Input/Input'
 import Button from '../../UI/Button/Button'
+import {connect} from 'react-redux'
 
 class DisciplinaPage extends Component{
     state = {
@@ -221,10 +222,12 @@ class DisciplinaPage extends Component{
                 touched={formElement.config.touched}
                 changed={(event) => this.inputChangedHandler(event, formElement.id)} />
         ))*/
+        
+
 
         return(
         <div className = {classes.DisciplinaPage}>
-            <Modal show={this.state.meuFeedbackOpen} modalClosed={() => this.closeFeedbackHandler()}>
+            {this.props.token?<Modal show={this.state.meuFeedbackOpen} modalClosed={() => this.closeFeedbackHandler()}>
                 <form className = {classes.Form}>
                 Em qual dificuldade você classificaria essa disciplina:
                 <Input 
@@ -308,7 +311,7 @@ class DisciplinaPage extends Component{
                 changed={(event) => this.inputChangedHandler(event, formElementsArray[7].id)} />
                 <Button>OK</Button>
                 </form>
-            </Modal>
+            </Modal>:<Modal show={this.state.meuFeedbackOpen} modalClosed={() => this.closeFeedbackHandler()}>Login</Modal>}
             <DadosDisplay
             clicked = {() => this.openFeedbackHandler()}
             Nome = {this.state.disciplinaAtual.NomeCompleto}
@@ -327,5 +330,11 @@ class DisciplinaPage extends Component{
     }
 }
 
-export default DisciplinaPage
+const mapStateToProps = state => {
+    return {
+        token: state.token
+    }
+}
+
+export default connect(mapStateToProps, null)(DisciplinaPage);
 

@@ -10,7 +10,7 @@ const toolbar = (props) =>(
         <div><Logo type = 'toolbar'/></div>
         </NavLink>
         <NavLink to = {'/login'} className = {classes.Link}>{props.name}
-        <div><p className={link}>LOGIN</p></div>
+        <div><p className={classes.Link}>LOGIN</p></div>
         </NavLink>
         <nav>
             ...
