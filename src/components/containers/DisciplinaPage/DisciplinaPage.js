@@ -19,10 +19,10 @@ class DisciplinaPage extends Component{
                 elementConfig: {
                     options: [
                         {value: null, displayValue: ''},
-                        {value: '1', displayValue: 'Fácil'},
-                        {value: '2', displayValue: 'Normal'},
-                        {value: '3', displayValue: 'Dificil'},
-                        {value: '4', displayValue: 'Muito Dificil'}
+                        {value: 1, displayValue: 'Fácil'},
+                        {value: 2, displayValue: 'Normal'},
+                        {value: 3, displayValue: 'Dificil'},
+                        {value: 4, displayValue: 'Muito Dificil'}
                     ]
                 },
                 value: '',
@@ -34,10 +34,10 @@ class DisciplinaPage extends Component{
                 elementConfig: {
                     options: [
                         {value: null, displayValue: ''},
-                        {value: '1', displayValue: 'Uma'},
-                        {value: '2', displayValue: 'Duas'},
-                        {value: '3', displayValue: 'Três'},
-                        {value: '4', displayValue: 'Quatro ou mais'}
+                        {value: 1, displayValue: 'Uma'},
+                        {value: 2, displayValue: 'Duas'},
+                        {value: 3, displayValue: 'Três'},
+                        {value: 4, displayValue: 'Quatro ou mais'}
                     ]
                 },
                 value: '',
@@ -48,9 +48,9 @@ class DisciplinaPage extends Component{
                 elementType: 'select',
                 elementConfig: {
                     options: [
-                        {value: null, displayValue: ''},
-                        {value: '1', displayValue: 'Sim'},
-                        {value: '2', displayValue: 'Não'}
+                        {value: 'NADA', displayValue: ''},
+                        {value: 1, displayValue: 'Sim'},
+                        {value: 0, displayValue: 'Não'}
                     ]
                 },
                 value: '',
@@ -61,9 +61,9 @@ class DisciplinaPage extends Component{
                 elementType: 'select',
                 elementConfig: {
                     options: [
-                        {value: null, displayValue: ''},
-                        {value: '1', displayValue: 'Sim'},
-                        {value: '2', displayValue: 'Não'}
+                        {value: 'NADA', displayValue: ''},
+                        {value: 1, displayValue: 'Sim'},
+                        {value: 0, displayValue: 'Não'}
                     ]
                 },
                 value: '',
@@ -180,17 +180,28 @@ class DisciplinaPage extends Component{
         }
         this.setState({feedback: updatedFeedback, formIsValid: formIsValid});
     }
+
     componentDidMount(){
+        this.getDataHandler();
+        
+    }
+    
+    componentDidUpdate(){
+        this.getDataHandler();
+    }
+
+    getDataHandler(){
         if(this.props.match.params.id < 1006 && this.props.match.params.id >= 1001)
         axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas/' + this.props.match.params.id + '.json').
             then(response =>{
+
                 this.setState({disciplinaAtual: response.data})
             })
         else if(this.props.match.params.id < 1012 && this.props.match.params.id >= 1006)
         axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas2/' + this.props.match.params.id + '.json').
             then(response =>{
                 this.setState({disciplinaAtual: response.data})
-            })
+            })  
     }
     
     openFeedbackHandler = () =>{
@@ -200,6 +211,74 @@ class DisciplinaPage extends Component{
     closeFeedbackHandler = () => {
         this.setState({meuFeedbackOpen: false})
     }
+
+
+    updateDataHandler = (data) => {
+        let auxDif = 0, auxAva = 0, auxSatisf = 0, auxProj = 0, auxAvaCount = 0,
+        auxDifCount = 0, auxSatisfCount = 0, auxProjCount = 0; 
+        //this.getDataHandler();
+
+        let int = parseFloat(data[0].config.value), int2 = parseFloat(data[1].config.value),
+        int3 = parseInt(data[2].config.value), int4 = parseInt(data[3].config.value)
+        if(int >= 1 && int <=4){
+            auxDifCount = this.state.disciplinaAtual.DifCount + 1
+            auxDif = (((auxDifCount - 1) * this.state.disciplinaAtual.Dificuldade) + (int))/(auxDifCount)
+        }else{
+            auxDifCount = this.state.disciplinaAtual.DifCount
+            auxDif = this.state.disciplinaAtual.Dificuldade
+        }
+        if(int2 >= 1 && int2 <=4){
+            auxAvaCount = this.state.disciplinaAtual.AvaCount + 1
+            auxAva = (((auxAvaCount - 1) * this.state.disciplinaAtual.Avaliacoes) + (int2))/(auxAvaCount)
+        }else{
+            auxAvaCount = this.state.disciplinaAtual.AvaCount
+            auxAva = this.state.disciplinaAtual.Avaliacoes
+        }
+        if(int3 == 0 || int3 == 1){
+            auxProjCount = this.state.disciplinaAtual.ProjCount
+            auxProj = (((auxProjCount) * this.state.disciplinaAtual.ProjetoFinal) + (int3))/(auxProjCount + 1)
+            auxProjCount = auxProjCount + 1
+        }else{
+            auxProjCount = this.state.disciplinaAtual.ProjCount
+            auxProj = this.state.disciplinaAtual.ProjetoFinal
+        }
+        if(int4 == 0 || int4 == 1){
+            auxSatisfCount = this.state.disciplinaAtual.SatisfCount
+            console.log('Estado atual de Satisf antes da conta: ' + this.state.disciplinaAtual.Satisf)
+            auxSatisf = (((auxSatisfCount) * this.state.disciplinaAtual.Satisf) + (int4))/(auxSatisfCount + 1)
+            console.log('Estado atual de Satisf: ' + auxSatisf)
+            auxSatisfCount = this.state.disciplinaAtual.SatisfCount + 1
+        }else{
+            auxSatisfCount = this.state.disciplinaAtual.SatisfCount
+            auxSatisf = this.state.disciplinaAtual.Satisf
+        }
+        return [auxDifCount, auxDif, auxAvaCount, auxAva, auxProjCount, auxProj, auxSatisfCount, auxSatisf]
+    }
+
+    submitHandler = (event, data) => {
+        event.preventDefault();
+        const updateData = this.updateDataHandler(data);
+        if(this.state.disciplinaAtual.Periodo == 1){
+            console.log(updateData[0])
+            console.log(updateData[1])
+            axios.patch('https://help-cc-default-rtdb.firebaseio.com/Disciplinas/' + this.props.match.params.id + '.json?auth=' + this.props.token, {
+                
+                DifCount: updateData[0],
+                Dificuldade: updateData[1],
+                AvaCount: updateData[2],
+                Avaliacoes: updateData[3],
+                ProjCount: updateData[4],
+                ProjetoFinal: updateData[5],
+                SatisfCount: updateData[6],
+                Satisf: updateData[7]
+            })
+        }
+        else if(this.state.disciplinaAtual.Periodo == 2){
+            axios.patch('https://help-cc-default-rtdb.firebaseio.com/Disciplinas2/' + this.props.match.params.id + '.json?auth=' + this.props.token, data)
+        }
+        this.setState({meuFeedbackOpen: false})
+    }
+
 
 
     render(){
@@ -229,7 +308,7 @@ class DisciplinaPage extends Component{
         return(
         <div className = {classes.DisciplinaPage}>
             {this.props.token?<Modal show={this.state.meuFeedbackOpen} modalClosed={() => this.closeFeedbackHandler()}>
-                <form className = {classes.Form}>
+                <form onSubmit = {(e) => this.submitHandler(e, formElementsArray)} className = {classes.Form}>
                 Em qual dificuldade você classificaria essa disciplina:
                 <Input 
                 key={formElementsArray[0].id}
@@ -260,7 +339,7 @@ class DisciplinaPage extends Component{
                 shouldValidate={formElementsArray[2].config.validation}
                 touched={formElementsArray[2].config.touched}
                 changed={(event) => this.inputChangedHandler(event, formElementsArray[2].id)} />
-                Você se sentiu satisfeito com a disciplina:
+                Você gostou da disciplina no geral:
                 <Input 
                 key={formElementsArray[3].id}
                 elementType={formElementsArray[3].config.elementType}
@@ -321,7 +400,9 @@ class DisciplinaPage extends Component{
             clicked = {() => this.openFeedbackHandler()}
             Nome = {this.state.disciplinaAtual.NomeCompleto}
             Dificuldade = {this.state.disciplinaAtual.Dificuldade}
+            DifCount = {this.state.disciplinaAtual.DifCount}
             Avaliacoes = {this.state.disciplinaAtual.Avaliacoes}
+            AvaCount = {this.state.disciplinaAtual.AvaCount}
             TaxaNC = {this.state.disciplinaAtual.NC}
             Pontos = {this.state.disciplinaAtual.Pontos}
             ProjetoFinal = {this.state.disciplinaAtual.ProjetoFinal}
@@ -337,7 +418,8 @@ class DisciplinaPage extends Component{
 
 const mapStateToProps = state => {
     return {
-        token: state.token
+        token: state.token,
+        userId: state.userId
     }
 }
 

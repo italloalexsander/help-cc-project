@@ -7,7 +7,7 @@ const DadosDisplay = (props) =>{
     let auxProj = null
     let auxPontos = null
 
-    if(props.ProjetoFinal == 1){
+    if(props.ProjetoFinal >= 0.5){
         auxProj = 'Sim'
     }
 
@@ -54,8 +54,8 @@ const DadosDisplay = (props) =>{
                 
             <div className = {classes.Box}>
                 <p>Classificação: {auxPontos}</p>
-                <p>Dificuldade: {auxDif}</p>
-                <p>Número de Avaliações: {props.Avaliacoes}</p>
+                <p>Dificuldade: {auxDif}({props.DifCount})</p>
+                <p>Número de Avaliações: {props.Avaliacoes}({props.AvaCount})</p>
                 <p>Projeto Final: {auxProj}</p>
                 <p>Taxa NC: {props.TaxaNC}</p>
                 <p>Nível de Satisfação: {props.Satisfacao}</p>
