@@ -216,7 +216,7 @@ class DisciplinaPage extends Component{
     updateDataHandler = (data) => {
         let auxDif = 0, auxAva = 0, auxSatisf = 0, auxProj = 0, auxAvaCount = 0,
         auxDifCount = 0, auxSatisfCount = 0, auxProjCount = 0; 
-        //this.getDataHandler();
+        this.getDataHandler();
 
         let int = parseFloat(data[0].config.value), int2 = parseFloat(data[1].config.value),
         int3 = parseInt(data[2].config.value), int4 = parseInt(data[3].config.value)
