@@ -12,6 +12,7 @@ import {NavLink} from 'react-router-dom'
 class DisciplinaPage extends Component{
     state = {
         disciplinaAtual: [],
+        dataAuxiliar: [],
         meuFeedbackOpen: false,
         feedback: {
             Dificuldade_est: {
@@ -185,10 +186,8 @@ class DisciplinaPage extends Component{
         this.getDataHandler();
         
     }
+
     
-    componentDidUpdate(){
-        this.getDataHandler();
-    }
 
     getDataHandler(){
         if(this.props.match.params.id < 1006 && this.props.match.params.id >= 1001)
@@ -212,57 +211,118 @@ class DisciplinaPage extends Component{
         this.setState({meuFeedbackOpen: false})
     }
 
+    auxDataHandler(){
+    
+        let auxDif = 0, auxAva = 0, auxProj = 0, auxSatisf = 0, tam = 0, auxPontos = 0;
+        tam = this.state.dataAuxiliar.length;
+        console.log('tam = ' + tam)
+        console.log('auxDif = ' + auxDif + ' auxAva = ' + auxAva + ' auxProj = ' + ' auxSatisf = ' + auxSatisf)
+        for(let i = 0; i < tam; i++){
+            auxDif = auxDif + parseFloat(this.state.dataAuxiliar[i].Dificuldade)
+            auxAva = auxAva + parseFloat(this.state.dataAuxiliar[i].Avaliacoes)
+            auxProj = auxProj + parseFloat(this.state.dataAuxiliar[i].ProjetoFinal)
+            auxSatisf = auxSatisf + parseFloat(this.state.dataAuxiliar[i].Satisf)
+        }
 
-    updateDataHandler = (data) => {
-        let auxDif = 0, auxAva = 0, auxSatisf = 0, auxProj = 0, auxAvaCount = 0,
-        auxDifCount = 0, auxSatisfCount = 0, auxProjCount = 0; 
-        this.getDataHandler();
+        console.log('auxDif = ' + auxDif + ' auxAva = ' + auxAva + ' auxProj = ' + ' auxSatisf = ' + auxSatisf)
 
-        let int = parseFloat(data[0].config.value), int2 = parseFloat(data[1].config.value),
-        int3 = parseInt(data[2].config.value), int4 = parseInt(data[3].config.value)
-        if(int >= 1 && int <=4){
-            auxDifCount = this.state.disciplinaAtual.DifCount + 1
-            auxDif = (((auxDifCount - 1) * this.state.disciplinaAtual.Dificuldade) + (int))/(auxDifCount)
-        }else{
-            auxDifCount = this.state.disciplinaAtual.DifCount
-            auxDif = this.state.disciplinaAtual.Dificuldade
+        auxDif = parseFloat((auxDif))/tam
+        auxAva = parseFloat((auxAva))/tam
+        auxProj =  parseFloat((auxProj))/tam
+        auxSatisf = parseFloat((auxSatisf))/tam
+
+
+        auxPontos = (3*auxDif) + (2*auxAva) + 3*(auxProj)
+        if(this.props.match.params.id < 1006 && this.props.match.params.id >= 1001){
+            axios.put('https://help-cc-default-rtdb.firebaseio.com/Disciplinas/' + this.props.match.params.id + '.json?auth=' + this.props.token,
+
+                {
+                    NomeCompleto: this.state.disciplinaAtual.NomeCompleto,
+                    Nome: this.state.disciplinaAtual.Nome,
+                    NC: this.state.disciplinaAtual.NC,
+                    Apr: this.state.disciplinaAtual.Apr,
+                    Dificuldade: auxDif,
+                    Avaliacoes: auxAva,
+                    ProjetoFinal: auxProj,
+                    Satisf: auxSatisf,
+                    id: this.state.disciplinaAtual.id,
+                    Pontos: auxPontos,
+                    Periodo: 1,
+                    Respostas: tam
+                }
+            
+            )
         }
-        if(int2 >= 1 && int2 <=4){
-            auxAvaCount = this.state.disciplinaAtual.AvaCount + 1
-            auxAva = (((auxAvaCount - 1) * this.state.disciplinaAtual.Avaliacoes) + (int2))/(auxAvaCount)
-        }else{
-            auxAvaCount = this.state.disciplinaAtual.AvaCount
-            auxAva = this.state.disciplinaAtual.Avaliacoes
+        else if(this.props.match.params.id < 1012 && this.props.match.params.id >= 1006){
+            axios.put('https://help-cc-default-rtdb.firebaseio.com/Disciplinas2/' + this.props.match.params.id + '.json?auth=' + this.props.token,        
+                {
+                    NomeCompleto: this.state.disciplinaAtual.NomeCompleto,
+                    Nome: this.state.disciplinaAtual.Nome,
+                    NC: this.state.disciplinaAtual.NC,
+                    Apr: this.state.disciplinaAtual.Apr,
+                    Dificuldade: auxDif,
+                    Avaliacoes: auxAva,
+                    ProjetoFinal: auxProj,
+                    Satisf: auxSatisf,
+                    id: this.state.disciplinaAtual.id,
+                    Pontos: auxPontos,
+                    Periodo: 2,
+                    Respostas: tam
+                }
+            
+            )
         }
-        if(int3 == 0 || int3 == 1){
-            auxProjCount = this.state.disciplinaAtual.ProjCount
-            auxProj = (((auxProjCount) * this.state.disciplinaAtual.ProjetoFinal) + (int3))/(auxProjCount + 1)
-            auxProjCount = auxProjCount + 1
-        }else{
-            auxProjCount = this.state.disciplinaAtual.ProjCount
-            auxProj = this.state.disciplinaAtual.ProjetoFinal
-        }
-        if(int4 == 0 || int4 == 1){
-            auxSatisfCount = this.state.disciplinaAtual.SatisfCount
-            console.log('Estado atual de Satisf antes da conta: ' + this.state.disciplinaAtual.Satisf)
-            auxSatisf = (((auxSatisfCount) * this.state.disciplinaAtual.Satisf) + (int4))/(auxSatisfCount + 1)
-            console.log('Estado atual de Satisf: ' + auxSatisf)
-            auxSatisfCount = this.state.disciplinaAtual.SatisfCount + 1
-        }else{
-            auxSatisfCount = this.state.disciplinaAtual.SatisfCount
-            auxSatisf = this.state.disciplinaAtual.Satisf
-        }
-        return [auxDifCount, auxDif, auxAvaCount, auxAva, auxProjCount, auxProj, auxSatisfCount, auxSatisf]
+    
     }
 
-    submitHandler = (event, data) => {
+    updateDataHandler = () => {
+        let auxDif = 0, auxAva = 0, auxProj = 0, auxSatisf = 0, tam = 0;
+        console.log('Hi there')
+        let fetchedData = [], auxData = [];
+        axios.get('https://help-cc-default-rtdb.firebaseio.com/Feedback/' + this.props.match.params.id + '.json')
+        .then((res) => {
+            
+            for (let key in res.data)
+            {
+                fetchedData.push({
+                    ...res.data[key],
+                id: key})
+            }
+            this.setState({dataAuxiliar: fetchedData});
+        })
+        .then((res)=>{
+            this.auxDataHandler()
+        })
+
+    }
+
+
+
+    submitButtonHandler = (event,data) => {
         event.preventDefault();
-        const updateData = this.updateDataHandler(data);
+        //const updateData = this.updateDataHandler(data);
         if(this.state.disciplinaAtual.Periodo == 1){
-            console.log(updateData[0])
-            console.log(updateData[1])
-            axios.patch('https://help-cc-default-rtdb.firebaseio.com/Disciplinas/' + this.props.match.params.id + '.json?auth=' + this.props.token, {
-                
+            axios.put('https://help-cc-default-rtdb.firebaseio.com/Feedback/' + this.props.match.params.id + '/' + this.props.userId + '.json?auth=' + this.props.token, {
+                /*
+                DifCount: updateData[0],
+                Dificuldade: updateData[1],
+                AvaCount: updateData[2],
+                Avaliacoes: updateData[3],
+                ProjCount: updateData[4],
+                ProjetoFinal: updateData[5],
+                SatisfCount: updateData[6],
+                Satisf: updateData[7]*/
+                Dificuldade: data[0].config.value,
+                Avaliacoes: data[1].config.value,
+                ProjetoFinal: data[2].config.value,
+                Satisf: data[3].config.value
+            }).then((res)=>{
+                this.updateDataHandler()
+            })
+        }
+        else if(this.state.disciplinaAtual.Periodo == 2){
+            
+            axios.put('https://help-cc-default-rtdb.firebaseio.com/Feedback/' + this.props.match.params.id + '/' + this.props.userId + '.json?auth=' + this.props.token, { /*  
                 DifCount: updateData[0],
                 Dificuldade: updateData[1],
                 AvaCount: updateData[2],
@@ -271,14 +331,27 @@ class DisciplinaPage extends Component{
                 ProjetoFinal: updateData[5],
                 SatisfCount: updateData[6],
                 Satisf: updateData[7]
+            */
+                Dificuldade: data[0].config.value,
+                Avaliacoes: data[1].config.value,
+                ProjetoFinal: data[2].config.value,
+                Satisf: data[3].config.value
+            
             })
+        .then((res)=>{
+            this.updateDataHandler();
+        })
         }
-        else if(this.state.disciplinaAtual.Periodo == 2){
-            axios.patch('https://help-cc-default-rtdb.firebaseio.com/Disciplinas2/' + this.props.match.params.id + '.json?auth=' + this.props.token, data)
-        }
-        this.setState({meuFeedbackOpen: false})
+        this.setState({meuFeedbackOpen: false}) 
     }
 
+
+    /*submitButtonHandler = (event, data) =>{
+        event.preventDefault();
+        this.submitHandler(data);
+        this.updateDataHandler();
+        this.auxDataHandler()
+    }*/
 
 
     render(){
@@ -308,7 +381,7 @@ class DisciplinaPage extends Component{
         return(
         <div className = {classes.DisciplinaPage}>
             {this.props.token?<Modal show={this.state.meuFeedbackOpen} modalClosed={() => this.closeFeedbackHandler()}>
-                <form onSubmit = {(e) => this.submitHandler(e, formElementsArray)} className = {classes.Form}>
+                <form onSubmit = {(e) => this.submitButtonHandler(e, formElementsArray)} className = {classes.Form}>
                 Em qual dificuldade você classificaria essa disciplina:
                 <Input 
                 key={formElementsArray[0].id}
@@ -400,9 +473,7 @@ class DisciplinaPage extends Component{
             clicked = {() => this.openFeedbackHandler()}
             Nome = {this.state.disciplinaAtual.NomeCompleto}
             Dificuldade = {this.state.disciplinaAtual.Dificuldade}
-            DifCount = {this.state.disciplinaAtual.DifCount}
             Avaliacoes = {this.state.disciplinaAtual.Avaliacoes}
-            AvaCount = {this.state.disciplinaAtual.AvaCount}
             TaxaNC = {this.state.disciplinaAtual.NC}
             Pontos = {this.state.disciplinaAtual.Pontos}
             ProjetoFinal = {this.state.disciplinaAtual.ProjetoFinal}

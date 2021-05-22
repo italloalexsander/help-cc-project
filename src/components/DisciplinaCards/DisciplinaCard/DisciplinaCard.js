@@ -76,7 +76,7 @@ const DisciplinaCard = (props) =>{
         assignedClasses = classes.DisciplinaCard3
     }
 
-    else if (props.pontos < 5){
+    else if (props.pontos <= 5){
         assignedClasses = classes.DisciplinaCard4
     }
 
