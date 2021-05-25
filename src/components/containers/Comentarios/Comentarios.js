@@ -10,11 +10,11 @@ class Comentarios extends Component{
         coment: []
     }
 
-    componentDidMount(){
-        axios.get(url).then(response=>{
+    /*componentDidMount(){
+        axios.get().then(response=>{
 
         })   
-    }
+    }Ajeitar depois*/
 
 
     render(){

@@ -211,7 +211,19 @@ class DisciplinaPage extends Component{
         this.setState({meuFeedbackOpen: false})
     }
 
-    auxDataHandler(){
+    commentDataHandler(data){
+        axios.put('https://help-cc-default-rtdb.firebaseio.com/Comentarios/' + this.props.match.params.id + '/' + this.props.username + '.json?auth=' + this.props.token,
+        {
+            Dicas: data[4].config.value,
+            Sugestao: data[5].config.value,
+            Professor: data[6].config.value,
+            ProfessorNome: data[7].config.value,
+            Autor: this.props.username
+        })
+    }
+    
+
+    auxDataHandler(data){
     
         let auxDif = 0, auxAva = 0, auxProj = 0, auxSatisf = 0, tam = 0, auxPontos = 0;
         tam = this.state.dataAuxiliar.length;
@@ -272,10 +284,11 @@ class DisciplinaPage extends Component{
             
             )
         }
+        this.commentDataHandler(data);
     
     }
 
-    updateDataHandler = () => {
+    updateDataHandler = (data) => {
         let auxDif = 0, auxAva = 0, auxProj = 0, auxSatisf = 0, tam = 0;
         console.log('Hi there')
         let fetchedData = [], auxData = [];
@@ -291,7 +304,7 @@ class DisciplinaPage extends Component{
             this.setState({dataAuxiliar: fetchedData});
         })
         .then((res)=>{
-            this.auxDataHandler()
+            this.auxDataHandler(data)
         })
 
     }
@@ -317,7 +330,7 @@ class DisciplinaPage extends Component{
                 ProjetoFinal: data[2].config.value,
                 Satisf: data[3].config.value
             }).then((res)=>{
-                this.updateDataHandler()
+                this.updateDataHandler(data)
             })
         }
         else if(this.state.disciplinaAtual.Periodo == 2){
@@ -479,7 +492,7 @@ class DisciplinaPage extends Component{
             ProjetoFinal = {this.state.disciplinaAtual.ProjetoFinal}
             Satisfacao = {this.state.disciplinaAtual.Satisf}
             />
-            <Comentarios/>
+            <Comentarios id={this.props.match.params.id}/>
         </div>
 
         )
@@ -490,7 +503,8 @@ class DisciplinaPage extends Component{
 const mapStateToProps = state => {
     return {
         token: state.token,
-        userId: state.userId
+        userId: state.userId,
+        username: state.username
     }
 }
 
