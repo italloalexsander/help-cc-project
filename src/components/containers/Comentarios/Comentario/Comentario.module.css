@@ -1,0 +1,15 @@
+.Comentario{
+    background-color: white;
+    color: black;
+    text-align: left;
+    font-weight: normal;
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+}
+
+.Nome{
+    font-weight:bold;
+    font-size: smaller;
+}
+

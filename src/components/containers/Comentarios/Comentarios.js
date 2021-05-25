@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, {Component} from 'react'
+import Comentario from './Comentario/Comentario'
 
 class Comentarios extends Component{
 
@@ -10,20 +11,64 @@ class Comentarios extends Component{
         coment: []
     }
 
-    /*componentDidMount(){
-        axios.get().then(response=>{
-
+    componentDidMount(){
+        axios.get('https://help-cc-default-rtdb.firebaseio.com/Comentarios/' + this.props.id + '.json')
+        .then(res=>{
+            const fetchedComent = [];
+            for (let key in res.data)
+            {
+                fetchedComent.push({
+                    ...res.data[key],
+                id: key})
+            };
+            this.setState({coment: fetchedComent})
         })   
-    }Ajeitar depois*/
+    }
 
 
     render(){
-
-
+        let auxComent = null
+        if(this.state.Dicas){
+        auxComent = 
+            this.state.coment.map((coment) =>(
+            <Comentario
+                autor={coment.Autor}
+                key={coment.id.concat("jf")}
+                professorNome={coment.ProfessorNome}
+                conteudo={coment.Professor}
+                />
+            ))
+        }
+        else if(this.state.Sugestao){
+        auxComent =
+            this.state.coment.map((coment) =>(
+            <Comentario
+                autor={coment.Autor}
+                key={coment.id.concat("jf")}
+                professorNome={coment.ProfessorNome}
+                conteudo={coment.Professor}
+                />
+            )) 
+        }
+        else if(this.state.Professor){
+            this.state.coment.map((coment) =>(
+            <Comentario
+                autor={coment.Autor}
+                key={coment.id.concat("jf")}
+                professorNome={coment.ProfessorNome}
+                conteudo={coment.Professor}
+                />
+            ))
+        }
 
         return (
             <div>
-                <p>Comentários/Dicas/Sugestões:</p>
+                <div>
+                <button>Dicas</button>
+                <button>Sugestões</button>
+                <button>Professores</button>
+                </div>
+                {auxComent}
             </div>)
     }
 }
