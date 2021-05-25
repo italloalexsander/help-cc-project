@@ -26,6 +26,19 @@ class Comentarios extends Component{
     }
 
 
+    switchTypeHandler = (modo) =>{
+        console.log('hello my baby, hello my honey')
+        if(modo=='dicas'){
+            this.setState({Dicas: true, Sugestao: false, Professor: false})
+        }
+        else if(modo=='sugestao'){
+            this.setState({Dicas: false, Sugestao: true, Professor: false})
+        }
+        else if(modo=='professor'){
+            this.setState({Dicas: false, Sugestao: false, Professor: true})
+        }
+    }
+
     render(){
         let auxComent = null
         if(this.state.Dicas){
@@ -35,7 +48,8 @@ class Comentarios extends Component{
                 autor={coment.Autor}
                 key={coment.id.concat("jf")}
                 professorNome={coment.ProfessorNome}
-                conteudo={coment.Professor}
+                conteudo={coment.Dicas}
+                type={null}
                 />
             ))
         }
@@ -46,27 +60,30 @@ class Comentarios extends Component{
                 autor={coment.Autor}
                 key={coment.id.concat("jf")}
                 professorNome={coment.ProfessorNome}
-                conteudo={coment.Professor}
+                conteudo={coment.Sugestao}
+                type ={null}
                 />
             )) 
         }
         else if(this.state.Professor){
-            this.state.coment.map((coment) =>(
+        auxComent = this.state.coment.map((coment) =>(
             <Comentario
                 autor={coment.Autor}
                 key={coment.id.concat("jf")}
                 professorNome={coment.ProfessorNome}
                 conteudo={coment.Professor}
+                type = {true}
                 />
             ))
         }
 
+
         return (
             <div>
                 <div>
-                <button>Dicas</button>
-                <button>Sugestões</button>
-                <button>Professores</button>
+                <button onClick={() => this.switchTypeHandler('dicas')}>Dicas</button>
+                <button onClick={() => this.switchTypeHandler('sugestao')}>Sugestões</button>
+                <button onClick={() => this.switchTypeHandler('professor')}>Professores</button>
                 </div>
                 {auxComent}
             </div>)

@@ -5,7 +5,7 @@ const Comentario = (props) =>{
     return(
         <div className = {classes.Comentario}>
             <div className = {classes.Nome}>Autor: {props.autor}</div>
-            <div className = {classes.Nome}>Docente: {props.professorNome}</div>
+            {props.type?(<div className = {classes.Nome}>Docente: {props.professorNome}</div>):null}
             <div className = {classes.Conteudo}>{props.conteudo}</div>         
         </div>
     )
