@@ -10,6 +10,20 @@ import Logo from '../../Logo/Logo'
 class Auth extends Component{
     state = {
         controls: {
+            name:{
+                elementType: 'input',
+                elementConfig: {
+                    type: 'Nome',
+                    placeholder: 'Nome de Usuário'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    isEmail: false
+                },
+                valid: false,
+                touched: false
+            },
             email:{
                 elementType: 'input',
                 elementConfig: {
@@ -45,7 +59,7 @@ class Auth extends Component{
     submitHandler = (event) =>{
         event.preventDefault();
         this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value,
-            this.state.isSignup);
+            this.state.isSignup, this.state.controls.name);
     }
 
     checkValidity(value, rules) {
@@ -107,7 +121,10 @@ class Auth extends Component{
             });
         }
         
-        let form = formElementsArray.map(formElement => (
+        let form = [] 
+         
+        if(this.state.isSignup){
+            form = formElementsArray.map(formElement => (
             <Input 
                 key={formElement.id}
                 elementType={formElement.config.elementType}
@@ -117,7 +134,34 @@ class Auth extends Component{
                 shouldValidate={formElement.config.validation}
                 touched={formElement.config.touched}
                 changed={(event) => this.inputChangedHandler(event, formElement.id)} />
-        ))
+                ))
+            }
+        else{
+            form =
+            <div>
+                <Input
+                    key={formElementsArray[1].id}
+                    elementType={formElementsArray[1].config.elementType}
+                    elementConfig={formElementsArray[1].config.elementConfig}
+                    value={formElementsArray[1].config.value}
+                    invalid={!formElementsArray[1].config.valid}
+                    shouldValidate={formElementsArray[1].config.validation}
+                    touched={formElementsArray[1].config.touched}
+                    changed={(event) => this.inputChangedHandler(event, formElementsArray[1].id)}
+                />
+                <Input
+                    key={formElementsArray[2].id}
+                    elementType={formElementsArray[2].config.elementType}
+                    elementConfig={formElementsArray[2].config.elementConfig}
+                    value={formElementsArray[2].config.value}
+                    invalid={!formElementsArray[2].config.valid}
+                    shouldValidate={formElementsArray[2].config.validation}
+                    touched={formElementsArray[2].config.touched}
+                    changed={(event) => this.inputChangedHandler(event, formElementsArray[2].id)}
+                />
+            </div>
+        }
+        
 
         if(this.props.loading){
             form = <Spinner></Spinner>
@@ -168,7 +212,7 @@ const mapDispatchToProps = dispatch => {
     
     return {
         
-        onAuth: (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup))
+        onAuth: (email, password, isSignup, name) => dispatch(actions.auth(email, password, isSignup, name))
     };
 };
 

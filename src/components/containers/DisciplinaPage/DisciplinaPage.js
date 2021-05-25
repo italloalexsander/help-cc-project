@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import DadosDisplay from '../../DadosDisplay/DadosDisplay'
 import classes from './DisciplinaPage.module.css'
-import Comentarios from './Comentarios'
+import Comentarios from '../Comentarios/Comentarios'
 import Modal from '../../UI/Modal/Modal'
 import Input from '../../UI/Input/Input'
 import Button from '../../UI/Button/Button'

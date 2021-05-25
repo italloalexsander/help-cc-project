@@ -14,7 +14,7 @@ const toolbar = (props) =>(
         {!props.token?
         <NavLink to = {'/login'} className = {classes.Link}>{props.name}
         <div><p className={classes.Link}>LOGIN</p></div>
-        </NavLink>:<p>Você está logado</p>}
+        </NavLink>:<p>Você está logado, {props.username}</p>}
         <nav>
             ...
         </nav>
@@ -23,7 +23,8 @@ const toolbar = (props) =>(
 
 const mapStateToProps = state => {
     return {
-        token: state.token
+        token: state.token,
+        username: state.username
     }
 }
 

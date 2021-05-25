@@ -8,10 +8,11 @@ export const authStart = () => {
     };
 };
 
-export const authSuccess = (token, userId) => {
+export const authSuccess = (token, userId, name) => {
     return{
         type: actionTypes.AUTH_SUCCESS,
         idToken: token,
+        username: name,
         userId: userId
     };
 };
@@ -39,7 +40,36 @@ export const authFail = (error) => {
     };
 };
 
-export const auth = (email, password, isSignup) =>{
+export const auxAuth = (idToken, localId, isSignup, name) => {
+    return dispatch =>
+    {
+        let url = 'https://help-cc-default-rtdb.firebaseio.com/Users/'
+
+        if(isSignup){
+            console.log('este é o localid: ' + localId)
+            axios.put(url + localId + '.json?auth=' + idToken, {Name: name}).then(response=>{
+                console.log(response.data.Name.value)
+                dispatch(authSuccess(idToken, localId, response.data.Name.value));
+                //dispatch(checkAuthTimeout(response.data.expiresIn))
+            }).catch(err =>{
+                console.log(err);
+                dispatch(authFail(err.response.data.error))
+            })
+        }
+        else{
+            axios.get(url + localId + '.json').then(response=>{
+                console.log(response.data.Name.value)
+                dispatch(authSuccess(idToken, localId, response.data.Name.value));
+                //dispatch(checkAuthTimeout(response.data.expiresIn))
+            }).catch(err =>{
+                console.log(err);
+                dispatch(authFail(err.response.data.error))
+            })
+        }
+    }
+}
+
+export const auth = (email, password, isSignup, name) =>{
     return dispatch => {
         dispatch(authStart());
         const authData = {
@@ -54,9 +84,9 @@ export const auth = (email, password, isSignup) =>{
         }
         axios.post(url, authData)
         .then(response=>{
+            dispatch(auxAuth(response.data.idToken, response.data.localId, isSignup, name))
             console.log(response);
-            dispatch(authSuccess(response.data.idToken, response.data.localId));
-            dispatch(checkAuthTimeout(response.data.expiresIn))
+            
         })
         .catch(err =>{
             console.log(err);

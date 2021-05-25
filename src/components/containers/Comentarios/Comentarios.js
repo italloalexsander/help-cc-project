@@ -2,6 +2,15 @@ import React, {Component} from 'react'
 
 class Comentarios extends Component{
 
+    state ={
+
+    }
+
+    componentDidMount(){
+        
+    }
+
+
     render(){
         return (
             <div>
