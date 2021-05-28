@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, {Component} from 'react'
 import Comentario from './Comentario/Comentario'
+import classes from './Comentarios.module.css'
 
 class Comentarios extends Component{
 
@@ -79,11 +80,11 @@ class Comentarios extends Component{
 
 
         return (
-            <div>
-                <div>
-                <button onClick={() => this.switchTypeHandler('dicas')}>Dicas</button>
-                <button onClick={() => this.switchTypeHandler('sugestao')}>Sugestões</button>
-                <button onClick={() => this.switchTypeHandler('professor')}>Professores</button>
+            <div className = {classes.Comentarios}>
+                <div >
+                <button className = {classes.Selecao} onClick={() => this.switchTypeHandler('dicas')}>Dicas</button>
+                <button className = {classes.Selecao} onClick={() => this.switchTypeHandler('sugestao')}>Sugestões</button>
+                <button className = {classes.Selecao} onClick={() => this.switchTypeHandler('professor')}>Professores</button>
                 </div>
                 {auxComent}
             </div>)

@@ -16,6 +16,12 @@ class DisciplinaCards extends Component{
     state = {
         disciplinas: [],
         disciplinas2: [],
+        disciplinas3: [],
+        disciplinas4: [],
+        disciplinas5: [],
+        disciplinas6: [],
+        disciplinas7: [],
+        disciplinas8: [],
         selecao: [],
         cont: 0,
         contDifMed: 0,
@@ -27,7 +33,13 @@ class DisciplinaCards extends Component{
         periodoMontado: false,
         redirect: false,
         discShow: true,
-        disc2Show: true
+        disc2Show: true,
+        disc3Show: true,
+        disc4Show: true,
+        disc5Show: true,
+        disc6Show: true,
+        disc7Show: true,
+        disc8Show: true
 
     }
 
@@ -42,6 +54,30 @@ class DisciplinaCards extends Component{
         if(aux == 2){
             aux2 = this.state.disc2Show
             this.setState({disc2Show: !aux2})
+        }
+        if(aux == 3){
+            aux2 = this.state.disc3Show
+            this.setState({disc3Show: !aux2})
+        }
+        if(aux == 4){
+            aux2 = this.state.disc4Show
+            this.setState({disc4Show: !aux2})
+        }
+        if(aux == 5){
+            aux2 = this.state.disc5Show
+            this.setState({disc5Show: !aux2})
+        }
+        if(aux == 6){
+            aux2 = this.state.disc6Show
+            this.setState({disc6Show: !aux2})
+        }
+        if(aux == 7){
+            aux2 = this.state.disc7Show
+            this.setState({disc7Show: !aux2})
+        }
+        if(aux == 8){
+            aux2 = this.state.disc8Show
+            this.setState({disc8Show: !aux2})
         }
     }
 
@@ -71,6 +107,54 @@ class DisciplinaCards extends Component{
                 console.log(this.state.disciplinas2[index].id)
                 this.setState({
                     selecao: [...this.state.selecao, this.state.disciplinas2[index]]
+                })
+            }
+        }
+        else if(periodo === 3){
+            if(!this.state.selecao.find(element=>element.id===this.state.disciplinas3[index].id)){
+                console.log(this.state.disciplinas3[index].id)
+                this.setState({
+                    selecao: [...this.state.selecao, this.state.disciplinas3[index]]
+                })
+            }
+        }
+        else if(periodo === 4){
+            if(!this.state.selecao.find(element=>element.id===this.state.disciplinas4[index].id)){
+                console.log(this.state.disciplinas4[index].id)
+                this.setState({
+                    selecao: [...this.state.selecao, this.state.disciplinas4[index]]
+                })
+            }
+        }
+        else if(periodo === 5){
+            if(!this.state.selecao.find(element=>element.id===this.state.disciplinas5[index].id)){
+                console.log(this.state.disciplinas5[index].id)
+                this.setState({
+                    selecao: [...this.state.selecao, this.state.disciplinas5[index]]
+                })
+            }
+        }
+        else if(periodo === 6){
+            if(!this.state.selecao.find(element=>element.id===this.state.disciplinas6[index].id)){
+                console.log(this.state.disciplinas7[index].id)
+                this.setState({
+                    selecao: [...this.state.selecao, this.state.disciplinas6[index]]
+                })
+            }
+        }
+        else if(periodo === 7){
+            if(!this.state.selecao.find(element=>element.id===this.state.disciplinas7[index].id)){
+                console.log(this.state.disciplinas7[index].id)
+                this.setState({
+                    selecao: [...this.state.selecao, this.state.disciplinas7[index]]
+                })
+            }
+        }
+        else if(periodo === 8){
+            if(!this.state.selecao.find(element=>element.id===this.state.disciplinas8[index].id)){
+                console.log(this.state.disciplinas8[index].id)
+                this.setState({
+                    selecao: [...this.state.selecao, this.state.disciplinas8[index]]
                 })
             }
         }
@@ -135,10 +219,22 @@ class DisciplinaCards extends Component{
         
         Promise.all([
             axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas.json'),
-            axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas2.json')
-        ]).then(([res, res2]) => {
+            axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas2.json'),
+            axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas3.json'),
+            axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas4.json'),
+            axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas5.json'),
+            axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas6.json'),
+            axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas7.json'),
+            axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas8.json')
+        ]).then(([res, res2, res3, res4, res5, res6, res7, res8]) => {
             const fetchedDisc = [];
             const fetchedDisc2 = [];
+            const fetchedDisc3 = [];
+            const fetchedDisc4 = [];
+            const fetchedDisc5 = [];
+            const fetchedDisc6 = [];
+            const fetchedDisc7 = [];
+            const fetchedDisc8 = [];
             for (let key in res.data)
             {
                 fetchedDisc.push({
@@ -151,8 +247,50 @@ class DisciplinaCards extends Component{
                     ...res2.data[key],
                 id: key})
             }
+            for (let key in res3.data)
+            {
+                fetchedDisc3.push({
+                    ...res3.data[key],
+                id: key})
+            }
+            for (let key in res4.data)
+            {
+                fetchedDisc4.push({
+                    ...res4.data[key],
+                id: key})
+            }
+            for (let key in res5.data)
+            {
+                fetchedDisc5.push({
+                    ...res5.data[key],
+                id: key})
+            }
+            for (let key in res6.data)
+            {
+                fetchedDisc6.push({
+                    ...res6.data[key],
+                id: key})
+            }
+            for (let key in res7.data)
+            {
+                fetchedDisc7.push({
+                    ...res7.data[key],
+                id: key})
+            }
+            for (let key in res8.data)
+            {
+                fetchedDisc8.push({
+                    ...res8.data[key],
+                id: key})
+            }
             this.setState({disciplinas: fetchedDisc,
-                                disciplinas2: fetchedDisc2})
+                           disciplinas2: fetchedDisc2,
+                           disciplinas3: fetchedDisc3,
+                           disciplinas4: fetchedDisc4,
+                           disciplinas5: fetchedDisc5,
+                           disciplinas6: fetchedDisc6,
+                           disciplinas7: fetchedDisc7,
+                           disciplinas8: fetchedDisc8})
         })
 
         /*
@@ -228,7 +366,102 @@ class DisciplinaCards extends Component{
                             NC={disc2.NC}
                             pontos={disc2.Pontos}
                         />
-                        
+                        ))
+                    ):null}
+                    <p className = {classes.Breakpoint}>Terceiro Período
+                    <button onClick = {() => this.buttonShowHandler(3)} className={classes.Button}>
+                        {this.state.disc3Show?('-'):'+'}</button></p>
+                    {this.state.disc3Show?(
+                        this.state.disciplinas3.map((disc3, index) =>(
+                        <DisciplinaCard
+                            click = {() => this.addDisciplinaHandler(index, 3)}
+                            key={disc3.id.concat("jf")} 
+                            name={disc3.Nome}
+                            id = {disc3.id}
+                            dificuldade={disc3.Dificuldade}
+                            NC={disc3.NC}
+                            pontos={disc3.Pontos}
+                        />
+                        ))
+                    ):null}
+                    <p className = {classes.Breakpoint}>Quarto Período
+                    <button onClick = {() => this.buttonShowHandler(4)} className={classes.Button}>
+                        {this.state.disc4Show?('-'):'+'}</button></p>
+                    {this.state.disc4Show?(
+                        this.state.disciplinas4.map((disc4, index) =>(
+                        <DisciplinaCard
+                            click = {() => this.addDisciplinaHandler(index, 4)}
+                            key={disc4.id.concat("jf")} 
+                            name={disc4.Nome}
+                            id = {disc4.id}
+                            dificuldade={disc4.Dificuldade}
+                            NC={disc4.NC}
+                            pontos={disc4.Pontos}
+                        />
+                        ))
+                    ):null}
+                    <p className = {classes.Breakpoint}>Quinto Período
+                    <button onClick = {() => this.buttonShowHandler(5)} className={classes.Button}>
+                        {this.state.disc5Show?('-'):'+'}</button></p>
+                    {this.state.disc5Show?(
+                        this.state.disciplinas5.map((disc5, index) =>(
+                        <DisciplinaCard
+                            click = {() => this.addDisciplinaHandler(index, 5)}
+                            key={disc5.id.concat("jf")} 
+                            name={disc5.Nome}
+                            id = {disc5.id}
+                            dificuldade={disc5.Dificuldade}
+                            NC={disc5.NC}
+                            pontos={disc5.Pontos}
+                        />
+                        ))
+                    ):null}
+                    <p className = {classes.Breakpoint}>Sexto Período
+                    <button onClick = {() => this.buttonShowHandler(6)} className={classes.Button}>
+                        {this.state.disc6Show?('-'):'+'}</button></p>
+                    {this.state.disc6Show?(
+                        this.state.disciplinas6.map((disc6, index) =>(
+                        <DisciplinaCard
+                            click = {() => this.addDisciplinaHandler(index, 5)}
+                            key={disc6.id.concat("jf")} 
+                            name={disc6.Nome}
+                            id = {disc6.id}
+                            dificuldade={disc6.Dificuldade}
+                            NC={disc6.NC}
+                            pontos={disc6.Pontos}
+                        />
+                        ))
+                    ):null}
+                    <p className = {classes.Breakpoint}>Sétimo Período
+                    <button onClick = {() => this.buttonShowHandler(7)} className={classes.Button}>
+                        {this.state.disc7Show?('-'):'+'}</button></p>
+                    {this.state.disc7Show?(
+                        this.state.disciplinas7.map((disc7, index) =>(
+                        <DisciplinaCard
+                            click = {() => this.addDisciplinaHandler(index, 7)}
+                            key={disc7.id.concat("jf")} 
+                            name={disc7.Nome}
+                            id = {disc7.id}
+                            dificuldade={disc7.Dificuldade}
+                            NC={disc7.NC}
+                            pontos={disc7.Pontos}
+                        />
+                        ))
+                    ):null}
+                    <p className = {classes.Breakpoint}>Oitavo Período
+                    <button onClick = {() => this.buttonShowHandler(8)} className={classes.Button}>
+                        {this.state.disc8Show?('-'):'+'}</button></p>
+                    {this.state.disc8Show?(
+                        this.state.disciplinas8.map((disc8, index) =>(
+                        <DisciplinaCard
+                            click = {() => this.addDisciplinaHandler(index, 8)}
+                            key={disc8.id.concat("jf")} 
+                            name={disc8.Nome}
+                            id = {disc8.id}
+                            dificuldade={disc8.Dificuldade}
+                            NC={disc8.NC}
+                            pontos={disc8.Pontos}
+                        />
                         ))
                     ):null}
                     

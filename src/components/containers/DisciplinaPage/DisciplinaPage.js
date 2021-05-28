@@ -200,7 +200,38 @@ class DisciplinaPage extends Component{
         axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas2/' + this.props.match.params.id + '.json').
             then(response =>{
                 this.setState({disciplinaAtual: response.data})
-            })  
+            })
+        else if(this.props.match.params.id < 1018 && this.props.match.params.id >= 1012)
+        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas3/' + this.props.match.params.id + '.json').
+            then(response =>{
+                this.setState({disciplinaAtual: response.data})
+            })
+        else if(this.props.match.params.id < 1026 && this.props.match.params.id >= 1018)
+        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas4/' + this.props.match.params.id + '.json').
+            then(response =>{
+                this.setState({disciplinaAtual: response.data})
+            })
+        else if(this.props.match.params.id < 1033 && this.props.match.params.id >= 1026)
+        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas5/' + this.props.match.params.id + '.json').
+            then(response =>{
+                this.setState({disciplinaAtual: response.data})
+            })
+        else if(this.props.match.params.id < 1039 && this.props.match.params.id >= 1033)
+        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas6/' + this.props.match.params.id + '.json').
+            then(response =>{
+                this.setState({disciplinaAtual: response.data})
+            })
+        else if(this.props.match.params.id < 1042 && this.props.match.params.id >= 1039)
+        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas7/' + this.props.match.params.id + '.json').
+            then(response =>{
+                this.setState({disciplinaAtual: response.data})
+            })
+        else if(this.props.match.params.id < 1044 && this.props.match.params.id >= 1042)
+        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas8/' + this.props.match.params.id + '.json').
+            then(response =>{
+                this.setState({disciplinaAtual: response.data})
+            })
+          
     }
     
     openFeedbackHandler = () =>{
@@ -225,7 +256,7 @@ class DisciplinaPage extends Component{
 
     auxDataHandler(data){
     
-        let auxDif = 0, auxAva = 0, auxProj = 0, auxSatisf = 0, tam = 0, auxPontos = 0;
+        let auxDif = 0, auxAva = 0, auxProj = 0, auxSatisf = 0, tam = 0, auxPontos = 0, auxProjRound = 0, auxNC = 0;
         tam = this.state.dataAuxiliar.length;
         console.log('tam = ' + tam)
         console.log('auxDif = ' + auxDif + ' auxAva = ' + auxAva + ' auxProj = ' + ' auxSatisf = ' + auxSatisf)
@@ -243,8 +274,29 @@ class DisciplinaPage extends Component{
         auxProj =  parseFloat((auxProj))/tam
         auxSatisf = parseFloat((auxSatisf))/tam
 
+        auxDif = +auxDif.toFixed(2)
+        auxAva = +auxAva.toFixed(2)
+        auxProj = +auxProj.toFixed(2)
+        auxSatisf = +auxSatisf.toFixed(2)
 
-        auxPontos = (3*auxDif) + (2*auxAva) + 3*(auxProj)
+        if(this.state.disciplinaAtual.NC >= 17){
+            auxNC = 4
+        }
+        else if (this.state.disciplinaAtual.NC >= 13){
+            auxNC = 3
+        }
+        else if (this.state.disciplinaAtual.NC >= 9){
+            auxNC = 2
+        }
+        else if (this.state.disciplinaAtual.NC >= 5){
+            auxNC = 1
+        }
+
+        if(auxProj > 0.5){
+            auxProjRound = 1
+        }
+
+        auxPontos = (3*auxDif) + (auxAva) + 3*(auxProjRound) + (auxNC)
         if(this.props.match.params.id < 1006 && this.props.match.params.id >= 1001){
             axios.put('https://help-cc-default-rtdb.firebaseio.com/Disciplinas/' + this.props.match.params.id + '.json?auth=' + this.props.token,
 
@@ -284,6 +336,120 @@ class DisciplinaPage extends Component{
             
             )
         }
+        else if(this.props.match.params.id < 1018 && this.props.match.params.id >= 1012){
+            axios.put('https://help-cc-default-rtdb.firebaseio.com/Disciplinas3/' + this.props.match.params.id + '.json?auth=' + this.props.token,        
+                {
+                    NomeCompleto: this.state.disciplinaAtual.NomeCompleto,
+                    Nome: this.state.disciplinaAtual.Nome,
+                    NC: this.state.disciplinaAtual.NC,
+                    Apr: this.state.disciplinaAtual.Apr,
+                    Dificuldade: auxDif,
+                    Avaliacoes: auxAva,
+                    ProjetoFinal: auxProj,
+                    Satisf: auxSatisf,
+                    id: this.state.disciplinaAtual.id,
+                    Pontos: auxPontos,
+                    Periodo: 3,
+                    Respostas: tam
+                }
+            
+            )
+        }
+        else if(this.props.match.params.id < 1026 && this.props.match.params.id >= 1018){
+            axios.put('https://help-cc-default-rtdb.firebaseio.com/Disciplinas4/' + this.props.match.params.id + '.json?auth=' + this.props.token,        
+                {
+                    NomeCompleto: this.state.disciplinaAtual.NomeCompleto,
+                    Nome: this.state.disciplinaAtual.Nome,
+                    NC: this.state.disciplinaAtual.NC,
+                    Apr: this.state.disciplinaAtual.Apr,
+                    Dificuldade: auxDif,
+                    Avaliacoes: auxAva,
+                    ProjetoFinal: auxProj,
+                    Satisf: auxSatisf,
+                    id: this.state.disciplinaAtual.id,
+                    Pontos: auxPontos,
+                    Periodo: 4,
+                    Respostas: tam
+                }
+            
+            )
+        }
+        else if(this.props.match.params.id < 1033 && this.props.match.params.id >= 1026){
+            axios.put('https://help-cc-default-rtdb.firebaseio.com/Disciplinas5/' + this.props.match.params.id + '.json?auth=' + this.props.token,        
+                {
+                    NomeCompleto: this.state.disciplinaAtual.NomeCompleto,
+                    Nome: this.state.disciplinaAtual.Nome,
+                    NC: this.state.disciplinaAtual.NC,
+                    Apr: this.state.disciplinaAtual.Apr,
+                    Dificuldade: auxDif,
+                    Avaliacoes: auxAva,
+                    ProjetoFinal: auxProj,
+                    Satisf: auxSatisf,
+                    id: this.state.disciplinaAtual.id,
+                    Pontos: auxPontos,
+                    Periodo: 5,
+                    Respostas: tam
+                }
+            
+            )
+        }
+        else if(this.props.match.params.id < 1039 && this.props.match.params.id >= 1033){
+            axios.put('https://help-cc-default-rtdb.firebaseio.com/Disciplinas6/' + this.props.match.params.id + '.json?auth=' + this.props.token,        
+                {
+                    NomeCompleto: this.state.disciplinaAtual.NomeCompleto,
+                    Nome: this.state.disciplinaAtual.Nome,
+                    NC: this.state.disciplinaAtual.NC,
+                    Apr: this.state.disciplinaAtual.Apr,
+                    Dificuldade: auxDif,
+                    Avaliacoes: auxAva,
+                    ProjetoFinal: auxProj,
+                    Satisf: auxSatisf,
+                    id: this.state.disciplinaAtual.id,
+                    Pontos: auxPontos,
+                    Periodo: 6,
+                    Respostas: tam
+                }
+            
+            )
+        }
+        else if(this.props.match.params.id < 1042 && this.props.match.params.id >= 1039){
+            axios.put('https://help-cc-default-rtdb.firebaseio.com/Disciplinas7/' + this.props.match.params.id + '.json?auth=' + this.props.token,        
+                {
+                    NomeCompleto: this.state.disciplinaAtual.NomeCompleto,
+                    Nome: this.state.disciplinaAtual.Nome,
+                    NC: this.state.disciplinaAtual.NC,
+                    Apr: this.state.disciplinaAtual.Apr,
+                    Dificuldade: auxDif,
+                    Avaliacoes: auxAva,
+                    ProjetoFinal: auxProj,
+                    Satisf: auxSatisf,
+                    id: this.state.disciplinaAtual.id,
+                    Pontos: auxPontos,
+                    Periodo: 7,
+                    Respostas: tam
+                }
+            
+            )
+        }
+        else if(this.props.match.params.id < 1044 && this.props.match.params.id >= 1042){
+            axios.put('https://help-cc-default-rtdb.firebaseio.com/Disciplinas8/' + this.props.match.params.id + '.json?auth=' + this.props.token,        
+                {
+                    NomeCompleto: this.state.disciplinaAtual.NomeCompleto,
+                    Nome: this.state.disciplinaAtual.Nome,
+                    NC: this.state.disciplinaAtual.NC,
+                    Apr: this.state.disciplinaAtual.Apr,
+                    Dificuldade: auxDif,
+                    Avaliacoes: auxAva,
+                    ProjetoFinal: auxProj,
+                    Satisf: auxSatisf,
+                    id: this.state.disciplinaAtual.id,
+                    Pontos: auxPontos,
+                    Periodo: 8,
+                    Respostas: tam
+                }
+            
+            )
+        }
         this.commentDataHandler(data);
     
     }
@@ -314,26 +480,16 @@ class DisciplinaPage extends Component{
     submitButtonHandler = (event,data) => {
         event.preventDefault();
         //const updateData = this.updateDataHandler(data);
-        if(this.state.disciplinaAtual.Periodo == 1){
-            axios.put('https://help-cc-default-rtdb.firebaseio.com/Feedback/' + this.props.match.params.id + '/' + this.props.userId + '.json?auth=' + this.props.token, {
-                /*
-                DifCount: updateData[0],
-                Dificuldade: updateData[1],
-                AvaCount: updateData[2],
-                Avaliacoes: updateData[3],
-                ProjCount: updateData[4],
-                ProjetoFinal: updateData[5],
-                SatisfCount: updateData[6],
-                Satisf: updateData[7]*/
-                Dificuldade: data[0].config.value,
-                Avaliacoes: data[1].config.value,
-                ProjetoFinal: data[2].config.value,
-                Satisf: data[3].config.value
-            }).then((res)=>{
-                this.updateDataHandler(data)
-            })
-        }
-        else if(this.state.disciplinaAtual.Periodo == 2){
+        //if(this.state.disciplinaAtual.Periodo == 1){
+        axios.put('https://help-cc-default-rtdb.firebaseio.com/Feedback/' + this.props.match.params.id + '/' + this.props.userId + '.json?auth=' + this.props.token, {
+            Dificuldade: data[0].config.value,
+            Avaliacoes: data[1].config.value,
+            ProjetoFinal: data[2].config.value,
+            Satisf: data[3].config.value
+        }).then((res)=>{
+            this.updateDataHandler(data)
+        })
+        /*else if(this.state.disciplinaAtual.Periodo == 2){
             
             axios.put('https://help-cc-default-rtdb.firebaseio.com/Feedback/' + this.props.match.params.id + '/' + this.props.userId + '.json?auth=' + this.props.token, { /*  
                 DifCount: updateData[0],
@@ -344,7 +500,7 @@ class DisciplinaPage extends Component{
                 ProjetoFinal: updateData[5],
                 SatisfCount: updateData[6],
                 Satisf: updateData[7]
-            */
+            
                 Dificuldade: data[0].config.value,
                 Avaliacoes: data[1].config.value,
                 ProjetoFinal: data[2].config.value,
@@ -354,7 +510,7 @@ class DisciplinaPage extends Component{
         .then((res)=>{
             this.updateDataHandler();
         })
-        }
+        }*/
         this.setState({meuFeedbackOpen: false}) 
     }
 
@@ -491,6 +647,7 @@ class DisciplinaPage extends Component{
             Pontos = {this.state.disciplinaAtual.Pontos}
             ProjetoFinal = {this.state.disciplinaAtual.ProjetoFinal}
             Satisfacao = {this.state.disciplinaAtual.Satisf}
+            Respostas = {this.state.disciplinaAtual.Respostas}
             />
             <Comentarios id={this.props.match.params.id}/>
         </div>

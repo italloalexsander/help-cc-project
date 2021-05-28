@@ -51,17 +51,17 @@ const DisciplinaCard = (props) =>{
     let auxDif = props.dificuldade;
 
     if(auxDif >= 3.5){
-        auxDif = '\u2b50\u2b50\u2b50\u2b50'
+        auxDif = '\uD83D\uDCA3\uD83D\uDCA3\uD83D\uDCA3\uD83D\uDCA3'
 
     }
     else if(auxDif >= 2.5){
-        auxDif = '\u2b50\u2b50\u2b50'
+        auxDif = '\uD83D\uDCA3\uD83D\uDCA3\uD83D\uDCA3'
     }
     else if(auxDif >= 1.5){
-        auxDif = '\u2b50\u2b50'
+        auxDif = '\uD83D\uDCA3\uD83D\uDCA3'
     }
     else if(auxDif == 1){
-        auxDif = '\u2b50'
+        auxDif = '\uD83D\uDCA3'
     }
 
     if (props.pontos > 11){
@@ -76,7 +76,7 @@ const DisciplinaCard = (props) =>{
         assignedClasses = classes.DisciplinaCard3
     }
 
-    else if (props.pontos <= 5){
+    else{
         assignedClasses = classes.DisciplinaCard4
     }
 
@@ -88,7 +88,7 @@ const DisciplinaCard = (props) =>{
                     </NavLink></span>
                     <p className = {classes.LinhaDivisora}>--------</p>
                     <p>Dificuldade: {auxDif}</p>
-                    <p>Taxa NC: {props.NC} </p>
+                    <p>Taxa NC: {props.NC}% </p>
                 </div>
                 
             </div>)
