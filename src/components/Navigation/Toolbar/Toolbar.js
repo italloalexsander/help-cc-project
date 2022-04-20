@@ -6,18 +6,18 @@ import {connect} from 'react-redux'
 
 
 const toolbar = (props) =>(
-    <header className={classes.Toolbar}>
-        <div>MENU</div>
+    <header className={classes.Toolbar}>      
+        <div className={classes.Logo}><Logo type = 'toolbar'/></div>
         <NavLink to = {'/'} className = {classes.Link}>{props.name}
-        <div><Logo type = 'toolbar'/></div>
+        <div className = {classes.Select}>Main Page</div>
+        </NavLink>
+        <NavLink to = {'/disciplinas'} className = {classes.Link}>{props.name}
+        <div className = {classes.Select}>Disciplinas</div>
         </NavLink>
         {!props.token?
         <NavLink to = {'/login'} className = {classes.Link}>{props.name}
-        <div><p className={classes.Link}>LOGIN</p></div>
+        <div><p className={classes.Link}>Login</p></div>
         </NavLink>:<p>Você está logado, {props.username}</p>}
-        <nav>
-            ...
-        </nav>
     </header>
 );
 
