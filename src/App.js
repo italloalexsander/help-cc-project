@@ -1,10 +1,8 @@
-import logo from './logo.svg';
 import React, {Component} from 'react';
 import Layout from './components/Layout/Layout'
 import PeriodoBuilder from './components/containers/PeriodoBuilder/PeriodoBuilder'
 import DisciplinaPage from './components/containers/DisciplinaPage/DisciplinaPage'
 import LandingPage from './components/LandingPage/LandingPage'
-import classes from './App.module.css'
 import {BrowserRouter, Route} from 'react-router-dom'
 import Auth from './components/containers/Auth/Auth'
 

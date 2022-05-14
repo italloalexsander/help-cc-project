@@ -170,12 +170,12 @@ class Auth extends Component{
         let errorMessage = null;
 
         if (this.props.error){
-            if(this.props.error.message == 'INVALID_EMAIL'){
+            if(this.props.error.message === 'INVALID_EMAIL'){
             errorMessage = (
                 <p>Email Inválido</p>
             )
             }
-            if (this.props.error.message == 'EMAIL_EXISTS'){
+            if (this.props.error.message === 'EMAIL_EXISTS'){
                 errorMessage = (
                     <p>Email já Cadastrado</p>
                 )

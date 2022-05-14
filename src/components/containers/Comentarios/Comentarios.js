@@ -31,15 +31,15 @@ class Comentarios extends Component{
 
     switchTypeHandler = (modo) =>{
         console.log('hello my baby, hello my honey')
-        if(modo=='dicas'){
+        if(modo==='dicas'){
             this.setState({Dicas: true, Sugestao: false, Professor: false, color1: 'lightgreen', color2: 'white', color3: 'white'})
 
         }
-        else if(modo=='sugestao'){
+        else if(modo==='sugestao'){
             classes.Selecao2 = classes.Selecao
             this.setState({Dicas: false, Sugestao: true, Professor: false, color2: 'lightgreen', color1: 'white', color3: 'white'})
         }
-        else if(modo=='professor'){
+        else if(modo==='professor'){
             this.setState({Dicas: false, Sugestao: false, Professor: true, color3: 'lightgreen', color1: 'white', color2: 'white'})
         }
     }

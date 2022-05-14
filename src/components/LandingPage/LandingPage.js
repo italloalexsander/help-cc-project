@@ -1,8 +1,6 @@
 import classes from './LandingPage.module.css'
 import React from 'react'
 import Logo from '../Logo/Logo'
-import {NavLink} from 'react-router-dom'
-
 
 const LandingPage = (props) =>{
     return(

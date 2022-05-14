@@ -6,8 +6,6 @@ import Tray from  '../Tray/Tray'
 import Aux from '../../hoc/Auxiliary'
 import Modal from '../UI/Modal/Modal'
 import PeriodoSummary from '../PeriodoSummary/PeriodoSummary'
-import {NavLink, Route} from 'react-router-dom'
-import DisciplinaPage from '../containers/DisciplinaPage/DisciplinaPage'
 
 class DisciplinaCards extends Component{
 
@@ -49,35 +47,35 @@ class DisciplinaCards extends Component{
     
     buttonShowHandler = (aux) =>{
         let aux2 = null;
-        if(aux == 1){
+        if(aux === 1){
             aux2 = this.state.discShow
             this.setState({discShow: !aux2})
         }
-        if(aux == 2){
+        if(aux === 2){
             aux2 = this.state.disc2Show
             this.setState({disc2Show: !aux2})
         }
-        if(aux == 3){
+        if(aux === 3){
             aux2 = this.state.disc3Show
             this.setState({disc3Show: !aux2})
         }
-        if(aux == 4){
+        if(aux === 4){
             aux2 = this.state.disc4Show
             this.setState({disc4Show: !aux2})
         }
-        if(aux == 5){
+        if(aux === 5){
             aux2 = this.state.disc5Show
             this.setState({disc5Show: !aux2})
         }
-        if(aux == 6){
+        if(aux === 6){
             aux2 = this.state.disc6Show
             this.setState({disc6Show: !aux2})
         }
-        if(aux == 7){
+        if(aux === 7){
             aux2 = this.state.disc7Show
             this.setState({disc7Show: !aux2})
         }
-        if(aux == 8){
+        if(aux === 8){
             aux2 = this.state.disc8Show
             this.setState({disc8Show: !aux2})
         }

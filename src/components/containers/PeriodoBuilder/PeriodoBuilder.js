@@ -1,7 +1,7 @@
-import axios from 'axios';
+//import axios from 'axios';
 import React, {Component} from 'react';
-import Aux from '../../../hoc/Auxiliary';
-import DisciplinaCard from '../../DisciplinaCards/DisciplinaCard/DisciplinaCard'
+//import Aux from '../../../hoc/Auxiliary';
+//import DisciplinaCard from '../../DisciplinaCards/DisciplinaCard/DisciplinaCard'
 import DisciplinaCards from '../../DisciplinaCards/DisciplinaCards'
 import classes from './PeriodoBuilder.module.css'
 

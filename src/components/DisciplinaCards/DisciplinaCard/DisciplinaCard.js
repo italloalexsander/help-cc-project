@@ -5,7 +5,7 @@ import {NavLink} from 'react-router-dom'
 
 const DisciplinaCard = (props) =>{
 
-    let styles = ""
+    //let styles = ""
 
     /*if(props.pontos > 11){
         return(
@@ -60,7 +60,7 @@ const DisciplinaCard = (props) =>{
     else if(auxDif >= 1.5){
         auxDif = '\uD83D\uDCA3\uD83D\uDCA3'
     }
-    else if(auxDif == 1){
+    else if(auxDif === 1){
         auxDif = '\uD83D\uDCA3'
     }
 

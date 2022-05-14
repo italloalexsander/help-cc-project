@@ -191,44 +191,44 @@ class DisciplinaPage extends Component{
 
     getDataHandler(){
         if(this.props.match.params.id < 1006 && this.props.match.params.id >= 1001)
-        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas/' + this.props.match.params.id + '.json').
-            then(response =>{
+        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas/' + this.props.match.params.id + '.json')
+        .then(response =>{
 
                 this.setState({disciplinaAtual: response.data})
             })
         else if(this.props.match.params.id < 1012 && this.props.match.params.id >= 1006)
-        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas2/' + this.props.match.params.id + '.json').
-            then(response =>{
+        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas2/' + this.props.match.params.id + '.json')
+        .then(response =>{
                 this.setState({disciplinaAtual: response.data})
             })
         else if(this.props.match.params.id < 1018 && this.props.match.params.id >= 1012)
-        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas3/' + this.props.match.params.id + '.json').
-            then(response =>{
+        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas3/' + this.props.match.params.id + '.json')
+        .then(response =>{
                 this.setState({disciplinaAtual: response.data})
             })
         else if(this.props.match.params.id < 1026 && this.props.match.params.id >= 1018)
-        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas4/' + this.props.match.params.id + '.json').
-            then(response =>{
+        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas4/' + this.props.match.params.id + '.json')
+        .then(response =>{
                 this.setState({disciplinaAtual: response.data})
             })
         else if(this.props.match.params.id < 1033 && this.props.match.params.id >= 1026)
-        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas5/' + this.props.match.params.id + '.json').
-            then(response =>{
+        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas5/' + this.props.match.params.id + '.json')
+        .then(response =>{
                 this.setState({disciplinaAtual: response.data})
             })
         else if(this.props.match.params.id < 1039 && this.props.match.params.id >= 1033)
-        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas6/' + this.props.match.params.id + '.json').
-            then(response =>{
+        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas6/' + this.props.match.params.id + '.json')
+        .then(response =>{
                 this.setState({disciplinaAtual: response.data})
             })
         else if(this.props.match.params.id < 1042 && this.props.match.params.id >= 1039)
-        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas7/' + this.props.match.params.id + '.json').
-            then(response =>{
+        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas7/' + this.props.match.params.id + '.json')
+        .then(response =>{
                 this.setState({disciplinaAtual: response.data})
             })
         else if(this.props.match.params.id < 1044 && this.props.match.params.id >= 1042)
-        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas8/' + this.props.match.params.id + '.json').
-            then(response =>{
+        axios.get('https://help-cc-default-rtdb.firebaseio.com/Disciplinas8/' + this.props.match.params.id + '.json')
+        .then(response =>{
                 this.setState({disciplinaAtual: response.data})
             })
           
@@ -258,8 +258,8 @@ class DisciplinaPage extends Component{
     
         let auxDif = 0, auxAva = 0, auxProj = 0, auxSatisf = 0, tam = 0, auxPontos = 0, auxProjRound = 0, auxNC = 0;
         tam = this.state.dataAuxiliar.length;
-        console.log('tam = ' + tam)
-        console.log('auxDif = ' + auxDif + ' auxAva = ' + auxAva + ' auxProj = ' + ' auxSatisf = ' + auxSatisf)
+        //console.log('tam = ' + tam)
+        //console.log('auxDif = ' + auxDif + ' auxAva = ' + auxAva + ' auxProj = ' + ' auxSatisf = ' + auxSatisf)
         for(let i = 0; i < tam; i++){
             auxDif = auxDif + parseFloat(this.state.dataAuxiliar[i].Dificuldade)
             auxAva = auxAva + parseFloat(this.state.dataAuxiliar[i].Avaliacoes)
@@ -267,7 +267,7 @@ class DisciplinaPage extends Component{
             auxSatisf = auxSatisf + parseFloat(this.state.dataAuxiliar[i].Satisf)
         }
 
-        console.log('auxDif = ' + auxDif + ' auxAva = ' + auxAva + ' auxProj = ' + ' auxSatisf = ' + auxSatisf)
+        //console.log('auxDif = ' + auxDif + ' auxAva = ' + auxAva + ' auxProj = ' + ' auxSatisf = ' + auxSatisf)
 
         auxDif = parseFloat((auxDif))/tam
         auxAva = parseFloat((auxAva))/tam
@@ -455,9 +455,9 @@ class DisciplinaPage extends Component{
     }
 
     updateDataHandler = (data) => {
-        let auxDif = 0, auxAva = 0, auxProj = 0, auxSatisf = 0, tam = 0;
-        console.log('Hi there')
-        let fetchedData = [], auxData = [];
+        //let auxDif = 0, auxAva = 0, auxProj = 0, auxSatisf = 0, tam = 0;
+        //console.log('Hi there')
+        let fetchedData = [];
         axios.get('https://help-cc-default-rtdb.firebaseio.com/Feedback/' + this.props.match.params.id + '.json')
         .then((res) => {
             
