@@ -31,10 +31,14 @@
     position: left;
 }
 
-.Link, Link:visited, Link:hover, Link:active{
+.Link, Link:visited{
     text-decoration: none;
-    color:inherit;
+    color: inherit;
     text-align: center;
+}
+
+.Link:hover{
+    color: lightblue;
 }
 
 @media (max-width: 600px){
