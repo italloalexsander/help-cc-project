@@ -1,14 +1,17 @@
 .PeriodoSummary{
     text-align: left;
     font-weight: normal;
+    color: black;
 }
 
 .Titulo{
     text-align: center;
+    color: black;
 }
 
 .SubTitulo{
     font-weight: bold;
+    color: black;
 }
 
 

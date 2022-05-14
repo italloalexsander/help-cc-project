@@ -15,15 +15,15 @@ const DadosDisplay = (props) =>{
         auxProj = 'Não'
     }
 
-    if(props.Pontos >= 11){
+    if(props.Pontos >= 20){
         auxPontos = 'Muito Pesada'
     }
 
-    else if(props.Pontos >= 8){
+    else if(props.Pontos >= 15){
         auxPontos = 'Pesada'
     }
 
-    else if(props.Pontos >= 5){
+    else if(props.Pontos >= 10){
         auxPontos = 'Normal'
     }
 
@@ -57,10 +57,11 @@ const DadosDisplay = (props) =>{
                 <p>Dificuldade: {auxDif}</p>
                 <p>Número de Avaliações: {props.Avaliacoes}</p>
                 <p>Projeto Final: {auxProj}</p>
-                <p>Taxa NC: {props.TaxaNC}</p>
+                <p>Taxa NC: {props.TaxaNC}%</p>
                 <p>Nível de Satisfação Geral: {props.Satisfacao * 100}%
                 <p>Feedbacks recebidos: {(props.Respostas)}</p>
-                </p>
+                <p className = {classes.Aviso}><br></br>*Todos esses dados com exceção da taxa NC(não completude), foram calculados por média simples a partir do feedback
+                dos usuários</p></p>
                 
             </div>
             {//<Comentarios/>

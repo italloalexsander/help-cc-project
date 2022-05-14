@@ -39,7 +39,9 @@ class DisciplinaCards extends Component{
         disc5Show: true,
         disc6Show: true,
         disc7Show: true,
-        disc8Show: true
+        disc8Show: true,
+        showTray: true,
+        trayStatus: '◀'
 
     }
 
@@ -91,6 +93,19 @@ class DisciplinaCards extends Component{
 
     periodoMontadoCancelHandler = () => {
         this.setState({periodoMontado: false})
+    }
+
+    showTrayHandler = () =>{
+        let aux = this.state.showTray
+        aux = !aux;
+        let aux2 = this.state.trayStatus
+        if(aux2 === '▶'){
+            aux2 = '◀'
+        }
+        else if(aux2 === '◀'){
+            aux2 = '▶'
+        }
+        this.setState({showTray: aux, trayStatus: aux2})
     }
 
     addDisciplinaHandler(index, periodo){
@@ -185,7 +200,9 @@ class DisciplinaCards extends Component{
             contPontos = contPontos + this.state.selecao[i].Pontos
             contAvaliacoes = contAvaliacoes + this.state.selecao[i].Avaliacoes
             contNC = contNC + this.state.selecao[i].Pontos
-            contProjetoFinal = contProjetoFinal + this.state.selecao[i].ProjetoFinal
+            if(this.state.selecao[i].ProjetoFinal >= 0.5){
+            contProjetoFinal = contProjetoFinal + 1
+            }
             SelecaoNom.push(this.state.selecao[i].Nome)
         }
 
@@ -467,6 +484,9 @@ class DisciplinaCards extends Component{
                     
                 </div>
                 <div className = {classes.SideBar}>
+                        {this.state.selecao[0]?<button className = {classes.hideTrayButton} onClick = {() => this.showTrayHandler()}>{this.state.trayStatus}</button>:null}
+                        {this.state.showTray && this.state.selecao[0]?<div>
+                        {this.state.selecao[0]?<p className = {classes.titleTray}>Período Selecionado</p>:null}
                         {this.state.selecao.map((trayAux, index) =>(
                         <Tray
                         name = {trayAux.Nome}
@@ -474,7 +494,8 @@ class DisciplinaCards extends Component{
                         click ={() => this.removeDisciplinaHandler(index)}/>
                         ))
                         }
-                        <button onClick = {() => this.clickOkHandler()}>OK</button>       
+                        {this.state.selecao[0]?(<button className = {classes.Sidebarbutton} onClick = {() => this.clickOkHandler()}>OK</button>):null}
+                        </div>:null}    
                 </div>            
             </Aux>
 

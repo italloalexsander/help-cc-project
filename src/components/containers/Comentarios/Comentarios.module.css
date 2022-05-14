@@ -1,9 +1,22 @@
 .Comentarios{
     margin: auto;
     padding: 16px;
+    width: 85%
+}
+
+.TituloSecao{
+    font-size: large;
+    color: white;
+}
+
+.Comentarios button{
+    background-color:white;
+    color: #05212b;
+    border-radius: 12px;
+    font-weight: bold;
+    margin-right: 5px;
 }
 
 .Selecao{
-    background-color:white;
-    color: lightblue
+    background-color: lightgreen;
 }

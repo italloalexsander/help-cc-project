@@ -64,15 +64,15 @@ const DisciplinaCard = (props) =>{
         auxDif = '\uD83D\uDCA3'
     }
 
-    if (props.pontos > 11){
+    if (props.pontos > 20){
         assignedClasses = classes.DisciplinaCard
     }
 
-    else if (props.pontos > 8){
+    else if (props.pontos > 15){
         assignedClasses = classes.DisciplinaCard2
     }
 
-    else if (props.pontos > 5){
+    else if (props.pontos > 10){
         assignedClasses = classes.DisciplinaCard3
     }
 
@@ -81,17 +81,19 @@ const DisciplinaCard = (props) =>{
     }
 
     return(
+        <div className = {classes.disciplina}>
             <div className = {assignedClasses}>
                 <button className ={classes.Button} onClick={props.click}>+</button>
                 <div>
                 <span><NavLink to = {'/disciplina/' + props.id} className = {classes.Link}>{props.name}
                     </NavLink></span>
-                    <p className = {classes.LinhaDivisora}>--------</p>
-                    <p>Dificuldade: {auxDif}</p>
+                    <p className = {classes.LinhaDivisora}><br></br></p>
+                    <p>Dificuldade*: {auxDif}</p>
                     <p>Taxa NC: {props.NC}% </p>
                 </div>
                 
-            </div>)
+            </div>
+        </div>)
         
 }
 //{id: "11500", name: "Calculo 1", dificuldade: 3, taxaReprovacao: "18%"}

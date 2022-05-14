@@ -1,17 +1,39 @@
 .PeriodoBuilder{
-    width:60%;
+    width: 75%;
     height: 100%;
-    margin: 5% 20%;
+    margin: 5% auto;
     border: 1px solid #eee;
     box-shadow: 0 2px 3px #ccc;
     padding: 16px;
     text-align: center;
     font-weight: bold;
-    background-color: lightblue;
-    color: black;
+    background-color: #05212b;
+    color: white;
+}
+
+.Legenda{
+    text-align: left;
+    color: white;
+}
+
+.Legenda1{
+    color: lightgreen;
+}
+
+.Legenda2{
+    color: lightseagreen;
+}
+
+.Legenda3{
+    color: orange;
+}
+
+.Legenda4{
+    color: red;
 }
 
 .Info{
     font-size: smaller;
     text-align: left;
+    color: white;
 }

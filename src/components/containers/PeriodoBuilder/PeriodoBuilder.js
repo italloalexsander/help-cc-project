@@ -33,6 +33,14 @@ class PeriodoBuilder extends Component{
         return(
             <div className = {classes.PeriodoBuilder}>
                     <p className = {classes.Info}>Obs: Taxa NC refere-se a soma de reprovação, trancamento e desistência de cada cadeira em primeiras tentativas</p>
+                    <p className = {classes.Info}>*: Dificuldade média estimada pela votação dos alunos</p>
+                    <div className = {classes.Legenda}>
+                        <span className = {classes.Legenda}>Legenda: </span>
+                        <span className = {classes.Legenda1}>■ Fácil </span>
+                        <span className = {classes.Legenda2}>■ Média </span>
+                        <span className = {classes.Legenda3}>■ Pesada </span>
+                        <span className = {classes.Legenda4}>■ Muito pesada</span>
+                    </div>
                     <DisciplinaCards/>
             </div>
         );

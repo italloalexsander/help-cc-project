@@ -9,7 +9,10 @@ class Comentarios extends Component{
         Dicas: true,
         Sugestao: false,
         Professor: false,
-        coment: []
+        coment: [],
+        color1: 'lightgreen',
+        color2: 'white',
+        color3: 'white'
     }
 
     componentDidMount(){
@@ -26,17 +29,18 @@ class Comentarios extends Component{
         })   
     }
 
-
     switchTypeHandler = (modo) =>{
         console.log('hello my baby, hello my honey')
         if(modo=='dicas'){
-            this.setState({Dicas: true, Sugestao: false, Professor: false})
+            this.setState({Dicas: true, Sugestao: false, Professor: false, color1: 'lightgreen', color2: 'white', color3: 'white'})
+
         }
         else if(modo=='sugestao'){
-            this.setState({Dicas: false, Sugestao: true, Professor: false})
+            classes.Selecao2 = classes.Selecao
+            this.setState({Dicas: false, Sugestao: true, Professor: false, color2: 'lightgreen', color1: 'white', color3: 'white'})
         }
         else if(modo=='professor'){
-            this.setState({Dicas: false, Sugestao: false, Professor: true})
+            this.setState({Dicas: false, Sugestao: false, Professor: true, color3: 'lightgreen', color1: 'white', color2: 'white'})
         }
     }
 
@@ -82,10 +86,12 @@ class Comentarios extends Component{
         return (
             <div className = {classes.Comentarios}>
                 <div >
-                <button className = {classes.Selecao} onClick={() => this.switchTypeHandler('dicas')}>Dicas</button>
-                <button className = {classes.Selecao} onClick={() => this.switchTypeHandler('sugestao')}>Sugestões</button>
-                <button className = {classes.Selecao} onClick={() => this.switchTypeHandler('professor')}>Professores</button>
+                <p className = {classes.TituloSecao}>Comentários</p>
+                <button style = {{backgroundColor: this.state.color1}} onClick={() => this.switchTypeHandler('dicas')}>Dicas</button>
+                <button style = {{backgroundColor: this.state.color2}} onClick={() => this.switchTypeHandler('sugestao')}>Sugestões</button>
+                <button style = {{backgroundColor: this.state.color3}} onClick={() => this.switchTypeHandler('professor')}>Professores</button>
                 </div>
+                <br></br>
                 {auxComent}
             </div>)
     }

@@ -8,13 +8,16 @@
     color: white;
     width: 200px;
     max-height: 30px;
-    background-color: lightblue;
+    background-color: #05212b;
     min-width: 30%;
     border-radius: 10px;
 }
 
 .Button{
     float: right;
-    background-color: lightblue;
+    background-color: lightcoral; 
     color: white;
+    border-radius: 50%;
+    text-align: center;
+    justify-content: center;
 }

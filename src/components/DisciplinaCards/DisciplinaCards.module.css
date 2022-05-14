@@ -9,26 +9,56 @@
     font-weight: bold;
     background-color: white;
     color: black;
-    border-radius: 10px; 
+    border-radius: 10px;
 }
 
 .DisciplinaCards{
     width: 100%;
     margin: 0;
-    overflow:hidden;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
 }
 
 .SideBar{
     top: 100px;
-    left: 85%;
+    left: 0;
     flex-direction: column;
     position: fixed;
     color: black;
     background-color: white;
+    border: solid 2px black;
+    border-radius: 10px;
+}
+
+.hideTrayButton{
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    height: 100%;
+    margin-bottom: 0;
+    margin-right: 85%;
+}
+
+.titleTray{
+    margin-top: 5px;
+    font-family: 'Open Sans'
+}
+
+.Sidebarbutton{
+    background-color: green;
+    border: 1px solid black;
+    min-width: 20px;
+    margin: 5px 5px;
+    border-radius: 5px;
+    font-weight: bolder;
+    color: white;
 }
 
 .Button{
-    background-color:white;
+    background-color: white;
     border: 1px solid black;
     min-width: 20px;
+    margin: 0 5px;
+    border-radius: 5px;
 }

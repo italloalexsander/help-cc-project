@@ -1,14 +1,28 @@
-.DisciplinaCard{
-    min-width: 250px;
-    width:15%;
-    margin: 16px 2px;
-    border: 1px solid #eee;
+.disciplina{
     box-shadow: 0 2px 3px #ccc;
-    padding: 16px;
     text-align: center;
     float: left;
+    justify-content: center;
     font-weight: normal;
     background-color: white;
+    min-width: 250px;
+    width: 24%;
+    margin: 16px 2px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    justify-content: center;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    color: rgba(50,50,50,1)
+}
+
+.disciplina Link:visited, Link:hover, Link:active{
+    color: inherit;
+}
+
+.DisciplinaCard{
+    border-right: 5px solid red;
+    padding: 16px;
     border-radius: 10px;
 }
 
@@ -18,16 +32,8 @@
 }
 
 .DisciplinaCard2{
-    min-width: 250px;
-    width:15%;
-    margin: 16px 2px;
-    border: 1px solid #eee;
-    box-shadow: 0 2px 3px #ccc;
+    border-right: 5px solid orange;
     padding: 16px;
-    text-align: center;
-    float: left;
-    font-weight: normal;
-    background-color: white;
     border-radius: 10px;
 }
 
@@ -37,16 +43,8 @@
 }
 
 .DisciplinaCard3{
-    min-width: 250px;
-    width:15%;
-    margin: 16px 2px;
-    border: 1px solid #eee;
-    box-shadow: 0 2px 3px #ccc;
+    border-right: 5px solid lightseagreen;
     padding: 16px;
-    text-align: center;
-    float: left;
-    font-weight: normal;
-    background-color: white;
     border-radius: 10px;
 }
 
@@ -56,16 +54,8 @@
 }
 
 .DisciplinaCard4{
-    min-width: 250px;
-    width:15%;
-    margin: 16px 2px;
-    border: 1px solid #eee;
-    box-shadow: 0 2px 3px #ccc;
+    border-right: 5px solid lightgreen;
     padding: 16px;
-    text-align: center;
-    float: left;
-    font-weight: normal;
-    background-color: white;
     border-radius: 10px;
 }
 
@@ -78,8 +68,10 @@
     float: right;;
     background-color: white;
     box-shadow: white;
-    border: 1px solid black;
+    border: 1px solid darkgrey;
+    border-radius: 50%;
     font-weight: bold;
+    
     
 }
 
@@ -95,3 +87,18 @@
     color:inherit;
     text-align: center;
 }
+
+@media (max-width: 800px){
+    .disciplina{
+        width: 40%;
+        margin-right: 30px;
+    }
+}
+
+@media (max-width: 450px){
+    .disciplina{
+        width: 100%;
+        margin-right: 30px;
+    }
+}
+

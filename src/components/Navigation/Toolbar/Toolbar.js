@@ -9,7 +9,7 @@ const toolbar = (props) =>(
     <header className={classes.Toolbar}>      
         <div className={classes.Logo}><Logo type = 'toolbar'/></div>
         <NavLink to = {'/'} className = {classes.Link}>{props.name}
-        <div className = {classes.Select}>Main Page</div>
+        <div className = {classes.Select}>Início</div>
         </NavLink>
         <NavLink to = {'/disciplinas'} className = {classes.Link}>{props.name}
         <div className = {classes.Select}>Disciplinas</div>

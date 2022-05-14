@@ -6,26 +6,45 @@
     top: 0;
     left: 0;
     background-color: white;
-    display: flex;
-    justify-content: space-between;
+    display:flex;
+    flex-direction: row; /*É o default, mas tá aqui pra ilustrar*/
     align-items: center;
-    padding: 0 20px;
+    justify-content: space-between;
+    padding: 0 50px;
     box-sizing: border-box;
     z-index: 90;
-    color: lightblue;
+    color: #05212b;
+    font-size: 20px;
+    font-weight: bold;
     border: 1px solid black;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     
 }
 
+
 .Toolbar nav{
     height: 100%;
+}
 
+.Logo{
+    position: left;
 }
 
 .Link, Link:visited, Link:hover, Link:active{
     text-decoration: none;
     color:inherit;
     text-align: center;
+}
+
+@media (max-width: 600px){
+    .Toolbar{
+        font-size: smaller;
+    }
+}
+
+@media (max-width: 400px){
+    .Toolbar{
+        font-size: 10px;
+    }
 }
