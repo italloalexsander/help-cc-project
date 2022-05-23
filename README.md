@@ -4,8 +4,16 @@ Aplicação desenvolvida com o propósito de dar suporte aos alunos do Curso de 
 ### Tecnologias usadas:
 
 **Javascript**;
+
 **ReactJs**;
+
+**REDUX**; (Para gerenciamento de login)
+
+**FIREBASE**
+
 **CSS3**;
+
+
 
 Veja ela rodando online em:
 https://help-cc.netlify.app/
