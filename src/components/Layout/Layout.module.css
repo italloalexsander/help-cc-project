@@ -2,5 +2,6 @@
     margin-top: 16px;
     background-color: #05212b;
     overflow: hidden;
+    box-sizing: border-box;
 }
 

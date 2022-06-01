@@ -197,7 +197,7 @@ class DisciplinaCards extends Component{
             contDificuldade = (contDificuldade + this.state.selecao[i].Dificuldade)
             contPontos = contPontos + this.state.selecao[i].Pontos
             contAvaliacoes = contAvaliacoes + this.state.selecao[i].Avaliacoes
-            contNC = contNC + this.state.selecao[i].Pontos
+            contNC = contNC + this.state.selecao[i].NC
             if(this.state.selecao[i].ProjetoFinal >= 0.5){
             contProjetoFinal = contProjetoFinal + 1
             }
